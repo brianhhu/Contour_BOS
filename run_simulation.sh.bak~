@@ -1,0 +1,118 @@
+#!/bin/bash 
+
+cp exampleLog.txt exampleLog.txt.bak
+truncate -s 0 exampleLog.txt
+
+## figure
+#sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27figure\x27 0 0 0 0 0 0 0/' exampleSubmitScript.submit
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27figure\x27 0 0 0 0 0 0 1/' exampleSubmitScript.submit
+sed -i '28s/.*/Queue 1/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 1 exampleLog.txt
+#/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','figure_overlap'); exit"  -nodisplay -nojvm 
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','figure_overlap_front'); exit"  -nodisplay -nojvm 
+#/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','figure_overlap_back'); exit"  -nodisplay -nojvm 
+rm output/*
+sed -i '28s/.*/Queue 100/' exampleSubmitScript.submit
+
+: <<'END'
+#contour 1_att
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 1 0 0 0 0 1/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 100 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_1_att_new'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 3_att
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 3 0 0 0 0 1/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 200 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_3_att_new'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 5_att
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 5 0 0 0 0 1/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 300 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_5_att_new'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 7_att
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 7 0 0 0 0 1/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 400 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_7_att_new'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 1
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 1 0 0 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 100 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_1'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#background 1
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27background\x27 1 1 0 0 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 200 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','background_1'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 7_ori2
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 2 7 0 0 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 300 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_ori2'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 7_ori3
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 3 7 0 0 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 400 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_ori3'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 7_pos1
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 7 0 1 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 500 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_pos1'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 7_pos2
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 7 0 2 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 600 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_pos2'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour jitter
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27jitter\x27 1 7 0 0 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 700 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_jitter'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#background jitter
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27background\x27 1 7 0 0 2 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 800 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','background_jitter'); exit"  -nodisplay -nojvm 
+rm output/*
+
+#contour 7
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27contour\x27 1 7 0 0 0 0 0/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 900 exampleLog.txt
+/share/apps/matlab/R2015a/bin/matlab -r "post_process('/home/nieburlab/contour/output','contour_7'); exit"  -nodisplay -nojvm 
+rm output/*
+
+##Nan's experiment
+sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27figure_nan\x27 0 0 0 0 0 0 0/' exampleSubmitScript.submit
+#sed -i '23s/.*/Arguments = $$(Arch) testScript $(Process) \x27figure_nan\x27 0 0 0 0 1 0 0/' exampleSubmitScript.submit
+sed -i '28s/.*/Queue 136/' exampleSubmitScript.submit
+condor_submit exampleSubmitScript.submit
+condor_wait -num 136 exampleLog.txt
+sed -i '28s/.*/Queue 100/' exampleSubmitScript.submit
+
+END
