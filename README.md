@@ -3,10 +3,10 @@ Project code associated with Hu_etal '17 paper on contour integration and border
 
 ### Introduction
 
-The program is written in MATLAB (Mathworks). The code is known to run on R2014a, but should also be compatible with other versions. The main program function is **demo.m**. Running this program will simulate the network model on different input stimuli, corresponding to the contour integration experiments (Chen et al., 2014) and the border ownership experiments (Qiu et al., 2007). To reproduce a subset of the figures used in the paper, run **plot_figs.m**. For more details about the experiments and/or the model, please see the following references:
+The program is written in MATLAB (Mathworks). The code is known to run on R2014a, but should also be compatible with other versions. The main program function is **demo.m**. Running this program will simulate the network model on different input stimuli, corresponding to the contour integration experiments (Chen et al., 2014) and the border ownership experiments (Qiu et al., 2007). To reproduce a subset of the figures shown in the paper, run **plot_figs.m**. For more details about the experiments and/or the model, please see the following references:
 
     @Article{Chen_etal14,
-        Title     = {{I}ncremental integration of global contours through interplay between visual cortical areas},
+        Title     = {Incremental integration of global contours through interplay between visual cortical areas},
         Author    = {Chen, Minggui and Yan, Yin and Gong, Xiajing and Gilbert, Charles D and Liang, Hualou and Li, Wu},
         Journal   = {Neuron},
         Year      = {2014},
@@ -17,7 +17,7 @@ The program is written in MATLAB (Mathworks). The code is known to run on R2014a
     }
     
     @Article{Qiu_etal07,
-        Title                    = {{F}igure-ground mechanisms provide structure for selective attention},
+        Title                    = {Figure-ground mechanisms provide structure for selective attention},
         Author                   = {F. T. Qiu and T. Sugihara and R. von der Heydt},
         Journal                  = {Nat. Neurosci.},
         Year                     = {2007},
