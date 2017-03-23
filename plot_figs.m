@@ -1,8 +1,9 @@
-%% Reproduce figures from paper
+%% Reproduce subset of figures from paper
 
 addpath('Results') % make sure Results folder is on path
+addpath('mfiles') % make sure files folder is on path (needed for plotting functions
 
-% Fig 1) Stimulus with population outputs
+% Fig 3) Stimulus with population outputs
 
 % contour
 figure
@@ -85,7 +86,7 @@ set(gcf, 'Color', 'w');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Fig 2) Time traces
+% Fig 4) Time traces
 
 figure
 ha = tight_subplot(3,1,[.05 .05],[.06 .06],[.01 .01]);
@@ -145,7 +146,7 @@ legend boxoff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Fig 3) Contour d'
+% Fig 4) Contour d'
 
 figure
 fontsize = 20;
@@ -193,212 +194,7 @@ set(gcf, 'Color', 'w');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Fig 4) V4 Orientation/Position
-
-figure
-subplot(2,2,1)
-fontsize = 20;
-fontsize_axes = 14;
-
-cont_1_ori2 = load('contour_1_ori2.mat');
-cont_1_ori3 = load('contour_1_ori3.mat');
-cont_7_ori2 = load('contour_7_ori2.mat');
-cont_7_ori3 = load('contour_7_ori3.mat');
-
-% orientation
-plot(0:1:500, mean(cont_7.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k','LineWidth',2); hold on; axis square;
-plot(0:1:500, mean(cont_7_ori2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g','LineWidth',2);
-plot(0:1:500, mean(cont_7_ori3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'b','LineWidth',2); % original
-plot(0:1:500, mean(cont_1.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k--','LineWidth',2);
-plot(0:1:500, mean(cont_1_ori2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g--','LineWidth',2);
-plot(0:1:500, mean(cont_1_ori3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'b--','LineWidth',2);
-xlim([0 500])
-ylim([0 1.01])
-set(gca,'Ytick',0:0.2:1)
-set(gca,'YTickLabel',0:0.2:1)
-set(gca,'FontSize',fontsize_axes)
-xlabel('Time (ms)','FontSize',fontsize)
-ylabel('Normalized activity','FontSize',fontsize)
-
-cont_1_pos2 = load('contour_1_pos1.mat');
-cont_1_pos3 = load('contour_1_pos2.mat');
-cont_7_pos2 = load('contour_7_pos1.mat');
-cont_7_pos3 = load('contour_7_pos2.mat');
-
-% position
-subplot(2,2,2)
-plot(0:1:500, mean(cont_7.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k','LineWidth',2); hold on; axis square;
-plot(0:1:500, mean(cont_7_pos2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'r','LineWidth',2);
-plot(0:1:500, mean(cont_7_pos3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g','LineWidth',2);
-plot(0:1:500, mean(cont_1.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k--','LineWidth',2);
-plot(0:1:500, mean(cont_1_pos2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'r--','LineWidth',2);
-plot(0:1:500, mean(cont_1_pos3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g--','LineWidth',2);
-xlim([0 500])
-ylim([0 1.01])
-set(gca,'Ytick',0:0.2:1)
-set(gca,'YTickLabel',0:0.2:1)
-set(gca,'FontSize',fontsize_axes)
-xlabel('Time (ms)','FontSize',fontsize)
-ylabel('Normalized activity','FontSize',fontsize)
-
-% orientation
-subplot(2,2,3)
-v4_ori1=(mean(mean(cont_7.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
-v4_ori2=(mean(mean(cont_7_ori2.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_ori2.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
-v4_ori3=(mean(mean(cont_7_ori3.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_ori3.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
-
-V4_ori = [v4_ori1 v4_ori2 v4_ori3];
-bar(0.01,V4_ori(1),0.01,'k'); axis square; hold on;
-bar(0.02,V4_ori(2),0.01,'g');
-bar(0.03,V4_ori(3),0.01,'b');
-ylim([0 8])
-xlim([0 0.1])
-set(gca,'XTick',1:3)
-set(gca,'XTickLabel',[]);
-set(gca,'FontSize',20)
-ylabel('d-prime','FontSize',28)
-box off
-
-% position
-subplot(2,2,4)
-
-v4_pos1=(mean(mean(cont_7.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
-v4_pos2=(mean(mean(cont_7_pos2.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_pos2.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
-v4_pos3=(mean(mean(cont_7_pos3.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_pos3.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
-
-V4_pos = [v4_pos1 v4_pos2 v4_pos3];
-bar(0.01,V4_pos(1),0.01,'k'); axis square; hold on;
-bar(0.02,V4_pos(2),0.01,'r');
-bar(0.03,V4_pos(3),0.01,'g');
-ylim([0 8])
-xlim([0 0.1])
-set(gca,'XTick',1:3)
-set(gca,'XTickLabel',[]);
-set(gca,'FontSize',20)
-ylabel('d-prime','FontSize',28)
-box off
-
-tightfig;
-set(gcf, 'Color', 'w');
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Fig 5) V1 Orientation/Position
-
-figure
-subplot(2,3,1)
-fontsize = 20;
-fontsize_axes = 14;
-
-back_1_ori2 = load('background_1_ori2.mat');
-back_1_ori3 = load('background_1_ori3.mat');
-back_7_ori2 = load('background_7_ori2.mat');
-back_7_ori3 = load('background_7_ori3.mat');
-
-plot(0:1:500, mean(back_7.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'k','LineWidth',2); hold on; axis square;
-plot(0:1:500, mean(back_7_ori2.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'g','LineWidth',2);
-plot(0:1:500, mean(back_7_ori3.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'b','LineWidth',2);
-plot(0:1:500, mean(back_1.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'k--','LineWidth',2);
-plot(0:1:500, mean(back_1_ori2.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'g--','LineWidth',2);
-plot(0:1:500, mean(back_1_ori3.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'b--','LineWidth',2);
-xlim([0 500])
-ylim([0 1])
-set(gca,'Ytick',0:0.2:1)
-set(gca,'YTickLabel',0:0.2:1)
-set(gca,'FontSize',fontsize_axes)
-xlabel('Time (ms)','FontSize',fontsize);
-ylabel('Normalized activity','FontSize',fontsize)
-
-subplot(2,3,2)
-
-cont_end_1 = load('contour_1_end.mat');
-cont_end_3 = load('contour_3_end.mat');
-cont_end_5 = load('contour_5_end.mat');
-cont_end_7 = load('contour_7_end.mat');
-
-plot(0:1:500, mean(cont_end_1.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'k','LineWidth',2); hold on; axis square;
-plot(0:1:500, mean(cont_end_3.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'r','LineWidth',2);
-plot(0:1:500, mean(cont_end_5.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'g','LineWidth',2);
-plot(0:1:500, mean(cont_end_7.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'b','LineWidth',2);
-xlim([0 500])
-set(gca,'Ytick',0:0.2:1)
-set(gca,'YTickLabel',0:0.2:1)
-set(gca,'FontSize',fontsize_axes)
-xlabel('Time (ms)','FontSize',fontsize);
-
-subplot(2,3,3)
-
-back_7_pos2 = load('background_7_pos1.mat');
-back_7_pos3 = load('background_7_pos2.mat');
-
-plot(0:1:500, mean(cont_1.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'k','LineWidth',2); hold on; axis square; % noise condition comparison
-plot(0:1:500, mean(back_7.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'r','LineWidth',2);
-plot(0:1:500, mean(back_7_pos2.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'g','LineWidth',2);
-plot(0:1:500, mean(back_7_pos3.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'b','LineWidth',2);
-xlim([0 500])
-ylim([0 1])
-set(gca,'Ytick',0:0.2:1)
-set(gca,'YTickLabel',0:0.2:1)
-set(gca,'FontSize',fontsize_axes)
-xlabel('Time (ms)','FontSize',fontsize);
-
-x = [1 3 5];
-
-% final results
-b_ori1 = (mean(mean(back_7.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
-b_ori2 = (mean(mean(back_7_ori2.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_ori2.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
-b_ori3 = (mean(mean(back_7_ori3.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_ori3.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
-
-c_end3 = (mean(mean(cont_end_3.results_new.E_trace,2))-mean(mean(cont_end_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(cont_end_3.results_new.E_trace,2))+var(mean(cont_end_1.results_new.E_trace,2)))));
-c_end5 = (mean(mean(cont_end_5.results_new.E_trace,2))-mean(mean(cont_end_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(cont_end_5.results_new.E_trace,2))+var(mean(cont_end_1.results_new.E_trace,2)))));
-c_end7 = (mean(mean(cont_end_7.results_new.E_trace,2))-mean(mean(cont_end_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(cont_end_7.results_new.E_trace,2))+var(mean(cont_end_1.results_new.E_trace,2)))));
-
-b_pos1 = (mean(mean(back_7.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
-b_pos2 = (mean(mean(back_7_pos2.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_pos2.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
-b_pos3 = (mean(mean(back_7_pos3.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_pos3.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
-
-b_ori = [b_ori1 b_ori2 b_ori3];
-c_end = [c_end3 c_end5 c_end7];
-b_pos = [b_pos1 b_pos2 b_pos3];
-
-subplot(2,3,4); axis square
-plot(x(1:3),b_ori(1:3),'-k.','LineWidth',3,'MarkerSize',25)
-set(gca, 'Xtick', 1:2:5)
-set(gca, 'XtickLabel',{'0','45','90'})
-set(gca,'Ytick',-3:1:0)
-set(gca,'YtickLabel',{'-3','-2','-1','0'})
-xlim([0.5 5.5])
-ylim([-3 0])
-set(gca,'FontSize',fontsize_axes)
-ylabel('d-prime','FontSize',fontsize)
-xlabel('Orientation (deg)','FontSize',fontsize)
-
-subplot(2,3,5); axis square
-plot(x(1:3),c_end(1:3),'-k.','LineWidth',3,'MarkerSize',25)
-set(gca, 'Xtick', 1:2:5)
-set(gca, 'XtickLabel',{'3','5','7'})
-xlim([0.5 5.5])
-ylim([0 4])
-set(gca,'FontSize',fontsize_axes)
-xlabel('Collinear bars','FontSize',fontsize)
-
-subplot(2,3,6); axis square
-plot(x(1:3),b_pos(1:3),'-k.','LineWidth',3,'MarkerSize',25)
-set(gca, 'Xtick', 1:2:5)
-set(gca, 'XtickLabel',{'1','2','3'})
-set(gca,'Ytick',-3:1:0)
-set(gca,'YtickLabel',{'-3','-2','-1','0'})
-xlim([0.5 5.5])
-ylim([-3 0])
-set(gca,'FontSize',fontsize_axes)
-xlabel('Distance (deg)','FontSize',fontsize)
-
-tightfig;
-set(gcf, 'Color', 'w');
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Fig 6) Contour d' (feedback, no feedback, att)
+% Fig 5) Contour d' (feedback, no feedback, att)
 figure
 fontsize_axes = 14;
 fontsize = 20;
@@ -470,7 +266,7 @@ legend boxoff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Fig 7) Recovery of figure stimulus with attention
+% Fig 6) Recovery of figure stimulus with attention
 fontsize = 20;
 square = load('figure_no_noise.mat');
 noisy_square = load('figure_noise.mat');
@@ -592,10 +388,9 @@ axis(ha(12), 'off')
 
 set(gcf,'Color','w');
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-% Fig 8) Plot overlapping figures
+% Fig 7) Plot overlapping figures
 fontsize = 20;
 square = load('figure_overlap.mat');
 square_front = load('figure_overlap_front.mat');
@@ -734,55 +529,207 @@ pos = get(ha(18),'Position');
 set(ha(18), 'Position', [0 0 pos(3) pos(4)]);
 axis(ha(18), 'off')
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% %%%%% Suppression within noise figure (with and without attention) %%%%%
-% % First load in results_new for each
-% Num=100;
-% 
-% % Add for storing suppression
-% E_supp_h = zeros(Num,9);
-% E_supp_v = zeros(Num,9);
-% 
-% % Add E cells
-% E_sum = zeros(Num,1);
-% 
-% % Add B cells
-% B_sum = zeros(Num,1);
-% 
-% % Add Gc cells
-% % Gc_sum = zeros(Num,1);
-% 
-% % Add Go cells
-% Go_sum = zeros(Num,1);
-% 
-% for i = 1:Num
-%     
-%     %%%%%%%%%%%%%%%%%%% Added new code %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     % Suppression
-%     E_temp = max(squeeze(results_new.E_temp(i,:,:,:)),[],3); % E cell activity
-%     
-%     % look at enhancement/suppression
-%     E_h_temp = sum(E_temp(32-3:32+3,:)); % horizontal slice
-%     E_supp_h(i,:) = [sum(E_h_temp(1:7)) sum(E_h_temp(8:14)) sum(E_h_temp(15:21)) sum(E_h_temp(22:28)) sum(E_h_temp(29:35)) sum(E_h_temp(36:42)) sum(E_h_temp(43:49)) sum(E_h_temp(50:56)) sum(E_h_temp(57:64))];
-%     E_v_temp = sum(E_temp(:,32-3:32+3),2)'; % vertical slice
-%     E_supp_v(i,:) = [sum(E_v_temp(1:7)) sum(E_v_temp(8:14)) sum(E_v_temp(15:21)) sum(E_v_temp(22:28)) sum(E_v_temp(29:35)) sum(E_v_temp(36:42)) sum(E_v_temp(43:49)) sum(E_v_temp(50:56)) sum(E_v_temp(57:64))];
-%     
-%     % sum of all edges of square
-%     E_sum(i,:) = sum(E_temp(18:46,18))+sum(E_temp(18:46,46))+sum(E_temp(18,19:45))+sum(E_temp(46,19:45));
-%     
-%     % sum of all BOS of square
-%     B_temp = squeeze(sqrt((results_new.B_temp(i,:,:,1)-results_new.B_temp(i,:,:,5)).^2+(results_new.B_temp(i,:,:,7)-results_new.B_temp(i,:,:,3)).^2));
-%     B_sum(i,:) = sum(B_temp(9:23,9))+sum(B_temp(9:23,23))+sum(B_temp(9,10:22))+sum(B_temp(23,10:22));
-%     
-% %     Gc_temp = max(results.Gc,[],3);
-% %     Gc_sum(i,:) = sum(Gc_temp(2:6,2))+sum(Gc_temp(2:6,6))+sum(Gc_temp(2,3:5))+sum(Gc_temp(6,3:5));
-%     
-%     Go_sum(i,:) = results_new.G_temp(i,4,4);
-%     
-% end
-% 
-% clear B_temp E_h_temp E_temp E_v_temp i Num results_new
+% Fig S1) V4 Orientation/Position
 
+figure
+subplot(2,2,1)
+fontsize = 20;
+fontsize_axes = 14;
 
-% Bar x-axis for generating model results compared to Qiu_etal07
-x = [0.01 0.0225 0.0375 0.05];
+cont_1_ori2 = load('contour_1_ori2.mat');
+cont_1_ori3 = load('contour_1_ori3.mat');
+cont_7_ori2 = load('contour_7_ori2.mat');
+cont_7_ori3 = load('contour_7_ori3.mat');
+
+% orientation
+plot(0:1:500, mean(cont_7.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k','LineWidth',2); hold on; axis square;
+plot(0:1:500, mean(cont_7_ori2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g','LineWidth',2);
+plot(0:1:500, mean(cont_7_ori3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'b','LineWidth',2); % original
+plot(0:1:500, mean(cont_1.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k--','LineWidth',2);
+plot(0:1:500, mean(cont_1_ori2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g--','LineWidth',2);
+plot(0:1:500, mean(cont_1_ori3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'b--','LineWidth',2);
+xlim([0 500])
+ylim([0 1.01])
+set(gca,'Ytick',0:0.2:1)
+set(gca,'YTickLabel',0:0.2:1)
+set(gca,'FontSize',fontsize_axes)
+xlabel('Time (ms)','FontSize',fontsize)
+ylabel('Normalized activity','FontSize',fontsize)
+
+cont_1_pos2 = load('contour_1_pos1.mat');
+cont_1_pos3 = load('contour_1_pos2.mat');
+cont_7_pos2 = load('contour_7_pos1.mat');
+cont_7_pos3 = load('contour_7_pos2.mat');
+
+% position
+subplot(2,2,2)
+plot(0:1:500, mean(cont_7.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k','LineWidth',2); hold on; axis square;
+plot(0:1:500, mean(cont_7_pos2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'r','LineWidth',2);
+plot(0:1:500, mean(cont_7_pos3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g','LineWidth',2);
+plot(0:1:500, mean(cont_1.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'k--','LineWidth',2);
+plot(0:1:500, mean(cont_1_pos2.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'r--','LineWidth',2);
+plot(0:1:500, mean(cont_1_pos3.results_new.Gc_trace)/max(mean(cont_7.results_new.Gc_trace)),'g--','LineWidth',2);
+xlim([0 500])
+ylim([0 1.01])
+set(gca,'Ytick',0:0.2:1)
+set(gca,'YTickLabel',0:0.2:1)
+set(gca,'FontSize',fontsize_axes)
+xlabel('Time (ms)','FontSize',fontsize)
+ylabel('Normalized activity','FontSize',fontsize)
+
+% orientation
+subplot(2,2,3)
+v4_ori1=(mean(mean(cont_7.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
+v4_ori2=(mean(mean(cont_7_ori2.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_ori2.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
+v4_ori3=(mean(mean(cont_7_ori3.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_ori3.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
+
+V4_ori = [v4_ori1 v4_ori2 v4_ori3];
+bar(0.01,V4_ori(1),0.01,'k'); axis square; hold on;
+bar(0.02,V4_ori(2),0.01,'g');
+bar(0.03,V4_ori(3),0.01,'b');
+ylim([0 8])
+xlim([0 0.1])
+set(gca,'XTick',1:3)
+set(gca,'XTickLabel',[]);
+set(gca,'FontSize',20)
+ylabel('d-prime','FontSize',28)
+box off
+
+% position
+subplot(2,2,4)
+
+v4_pos1=(mean(mean(cont_7.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
+v4_pos2=(mean(mean(cont_7_pos2.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_pos2.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
+v4_pos3=(mean(mean(cont_7_pos3.results_new.Gc_trace,2))-mean(mean(cont_1.results_new.Gc_trace,2)))./(sqrt(1/2*(var(mean(cont_7_pos3.results_new.Gc_trace,2))+var(mean(cont_1.results_new.Gc_trace,2)))));
+
+V4_pos = [v4_pos1 v4_pos2 v4_pos3];
+bar(0.01,V4_pos(1),0.01,'k'); axis square; hold on;
+bar(0.02,V4_pos(2),0.01,'r');
+bar(0.03,V4_pos(3),0.01,'g');
+ylim([0 8])
+xlim([0 0.1])
+set(gca,'XTick',1:3)
+set(gca,'XTickLabel',[]);
+set(gca,'FontSize',20)
+ylabel('d-prime','FontSize',28)
+box off
+
+tightfig;
+set(gcf, 'Color', 'w');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Fig S2) V1 Orientation/Position
+
+figure
+subplot(2,3,1)
+fontsize = 20;
+fontsize_axes = 14;
+
+back_1_ori2 = load('background_1_ori2.mat');
+back_1_ori3 = load('background_1_ori3.mat');
+back_7_ori2 = load('background_7_ori2.mat');
+back_7_ori3 = load('background_7_ori3.mat');
+
+plot(0:1:500, mean(back_7.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'k','LineWidth',2); hold on; axis square;
+plot(0:1:500, mean(back_7_ori2.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'g','LineWidth',2);
+plot(0:1:500, mean(back_7_ori3.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'b','LineWidth',2);
+plot(0:1:500, mean(back_1.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'k--','LineWidth',2);
+plot(0:1:500, mean(back_1_ori2.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'g--','LineWidth',2);
+plot(0:1:500, mean(back_1_ori3.results_new.E_trace)/max(mean(back_1.results_new.E_trace)),'b--','LineWidth',2);
+xlim([0 500])
+ylim([0 1])
+set(gca,'Ytick',0:0.2:1)
+set(gca,'YTickLabel',0:0.2:1)
+set(gca,'FontSize',fontsize_axes)
+xlabel('Time (ms)','FontSize',fontsize);
+ylabel('Normalized activity','FontSize',fontsize)
+
+subplot(2,3,2)
+
+cont_end_1 = load('contour_1_end.mat');
+cont_end_3 = load('contour_3_end.mat');
+cont_end_5 = load('contour_5_end.mat');
+cont_end_7 = load('contour_7_end.mat');
+
+plot(0:1:500, mean(cont_end_1.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'k','LineWidth',2); hold on; axis square;
+plot(0:1:500, mean(cont_end_3.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'r','LineWidth',2);
+plot(0:1:500, mean(cont_end_5.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'g','LineWidth',2);
+plot(0:1:500, mean(cont_end_7.results_new.E_trace)/max(mean(cont_end_7.results_new.E_trace)),'b','LineWidth',2);
+xlim([0 500])
+set(gca,'Ytick',0:0.2:1)
+set(gca,'YTickLabel',0:0.2:1)
+set(gca,'FontSize',fontsize_axes)
+xlabel('Time (ms)','FontSize',fontsize);
+
+subplot(2,3,3)
+
+back_7_pos2 = load('background_7_pos1.mat');
+back_7_pos3 = load('background_7_pos2.mat');
+
+plot(0:1:500, mean(cont_1.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'k','LineWidth',2); hold on; axis square; % noise condition comparison
+plot(0:1:500, mean(back_7.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'r','LineWidth',2);
+plot(0:1:500, mean(back_7_pos2.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'g','LineWidth',2);
+plot(0:1:500, mean(back_7_pos3.results_new.E_trace)/max(mean(cont_1.results_new.E_trace)),'b','LineWidth',2);
+xlim([0 500])
+ylim([0 1])
+set(gca,'Ytick',0:0.2:1)
+set(gca,'YTickLabel',0:0.2:1)
+set(gca,'FontSize',fontsize_axes)
+xlabel('Time (ms)','FontSize',fontsize);
+
+x = [1 3 5];
+
+% final results
+b_ori1 = (mean(mean(back_7.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
+b_ori2 = (mean(mean(back_7_ori2.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_ori2.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
+b_ori3 = (mean(mean(back_7_ori3.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_ori3.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
+
+c_end3 = (mean(mean(cont_end_3.results_new.E_trace,2))-mean(mean(cont_end_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(cont_end_3.results_new.E_trace,2))+var(mean(cont_end_1.results_new.E_trace,2)))));
+c_end5 = (mean(mean(cont_end_5.results_new.E_trace,2))-mean(mean(cont_end_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(cont_end_5.results_new.E_trace,2))+var(mean(cont_end_1.results_new.E_trace,2)))));
+c_end7 = (mean(mean(cont_end_7.results_new.E_trace,2))-mean(mean(cont_end_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(cont_end_7.results_new.E_trace,2))+var(mean(cont_end_1.results_new.E_trace,2)))));
+
+b_pos1 = (mean(mean(back_7.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
+b_pos2 = (mean(mean(back_7_pos2.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_pos2.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
+b_pos3 = (mean(mean(back_7_pos3.results_new.E_trace,2))-mean(mean(back_1.results_new.E_trace,2)))./(sqrt(1/2*(var(mean(back_7_pos3.results_new.E_trace,2))+var(mean(back_1.results_new.E_trace,2)))));
+
+b_ori = [b_ori1 b_ori2 b_ori3];
+c_end = [c_end3 c_end5 c_end7];
+b_pos = [b_pos1 b_pos2 b_pos3];
+
+subplot(2,3,4); axis square
+plot(x(1:3),b_ori(1:3),'-k.','LineWidth',3,'MarkerSize',25)
+set(gca, 'Xtick', 1:2:5)
+set(gca, 'XtickLabel',{'0','45','90'})
+set(gca,'Ytick',-3:1:0)
+set(gca,'YtickLabel',{'-3','-2','-1','0'})
+xlim([0.5 5.5])
+ylim([-3 0])
+set(gca,'FontSize',fontsize_axes)
+ylabel('d-prime','FontSize',fontsize)
+xlabel('Orientation (deg)','FontSize',fontsize)
+
+subplot(2,3,5); axis square
+plot(x(1:3),c_end(1:3),'-k.','LineWidth',3,'MarkerSize',25)
+set(gca, 'Xtick', 1:2:5)
+set(gca, 'XtickLabel',{'3','5','7'})
+xlim([0.5 5.5])
+ylim([0 4])
+set(gca,'FontSize',fontsize_axes)
+xlabel('Collinear bars','FontSize',fontsize)
+
+subplot(2,3,6); axis square
+plot(x(1:3),b_pos(1:3),'-k.','LineWidth',3,'MarkerSize',25)
+set(gca, 'Xtick', 1:2:5)
+set(gca, 'XtickLabel',{'1','2','3'})
+set(gca,'Ytick',-3:1:0)
+set(gca,'YtickLabel',{'-3','-2','-1','0'})
+xlim([0.5 5.5])
+ylim([-3 0])
+set(gca,'FontSize',fontsize_axes)
+xlabel('Distance (deg)','FontSize',fontsize)
+
+tightfig;
+set(gcf, 'Color', 'w');

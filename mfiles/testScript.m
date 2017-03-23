@@ -29,15 +29,16 @@ function [results] = testScript(condorJobId, condition, contour_ori, contour_len
 % By Danny Jeck, November 2014
 % Modified by Brian Hu
 
-fprintf('this will show up in the log: condorJobID = %d\n', condorJobId);
-
-% condor job ids start at 0 so add 1
-modRunNumber = mod(condorJobId + 1, 10);
-
-fprintf('modified runNumber = %d\n', modRunNumber);
+% % Some of this code was used to run simulations on a HTCondor cluster, but not needed here anymore
+% fprintf('this will show up in the log: condorJobID = %d\n', condorJobId);
+% 
+% % condor job ids start at 0 so add 1
+% modRunNumber = mod(condorJobId + 1, 10);
+% 
+% fprintf('modified runNumber = %d\n', modRunNumber);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-tic     % start the timer
+% tic     % start the timer
 
 rng(int32((condorJobId+1)*sum(100*clock))) % set random number generator based on condorJobId and system clock
 
@@ -96,73 +97,44 @@ elseif strcmp(condition,'jitter')
     [results.seed,stim] = gen_jitterstim([64 64], [9 9], 4, 9, 3, [5 5], contour_ori, 7); % jitter stim
 elseif strcmp(condition,'figure')
     if flag == 1
-	%load('state.mat');
-    	%[results.seed,stim] = gen_figstim([64 64], [9 9], 4, 9, 3, [5 5], 5, 1, state); % square figure stim with noise (saved random seed)
-
     	[results.seed,stim] = gen_figstim([64 64], [9 9], 4, 9, 3, [5 5], 5); % square figure stim with noise
     else
-	results.seed.Seed = 1; % not a random seed
-	stim = zeros(Nori,M,N);	
-
-	% standard square
-	%stim(1,[32-14 32+14], (32-14):(32+14)) = 1; % edge length = 14 (fits on grid)
-	%stim(3,(32-14):(32+14), [32-14 32+14]) = 1;
-
-	% overlapping squares
-	stim(1,[36-14 36+14], (20-14):(20+14)) = 1; % edge length = 14
-	stim(3,(36-14):(36+14), [20-14 20+14]) = 1;
-
-	stim(1,28-14, (44-14):(44+14)) = 1; % edge length = 14
-	stim(3,(28-14):(28+14), 44+14) = 1;
-
-	stim(1,28+14, 34:(44+14)) = 1; % edge length = 14
-	stim(3,(28-14):22, 44-14) = 1;
+        results.seed.Seed = 1; % not a random seed
+        stim = zeros(Nori,M,N);
+        
+%         standard square
+        stim(1,[32-14 32+14], (32-14):(32+14)) = 1; % edge length = 14 (fits on grid)
+        stim(3,(32-14):(32+14), [32-14 32+14]) = 1;
+        
+%         % overlapping squares
+%         stim(1,[36-14 36+14], (20-14):(20+14)) = 1; % edge length = 14
+%         stim(3,(36-14):(36+14), [20-14 20+14]) = 1;
+%         stim(1,28-14, (44-14):(44+14)) = 1; % edge length = 14
+%         stim(3,(28-14):(28+14), 44+14) = 1;
+%         stim(1,28+14, 34:(44+14)) = 1; % edge length = 14
+%         stim(3,(28-14):22, 44-14) = 1;
     end
-elseif strcmp(condition,'figure_nan')
-	results.seed.Seed = 1; % not a random seed
-
-	% Main experiment (128 cases)
-	nan_main = ff2n(8);
-	nan_main = nan_main(129:end,:);
- 	
-	% Control experiment (8 cases)
-	nan_control = ff2n(8);
-	nan_control = nan_control(nan_control(:,1)==0 & (sum(nan_control,2)==1 | sum(nan_control,2)==7),:);
-
-	% Total of 136 simulations
-	nan_total = [nan_main; nan_control]; % combine the two together
-	stim = gen_figstim_nan(nan_total(condorJobId+1,:),flag);
 else
     disp('Not a valid condition!')
 end
 
-%original
-%[results.seed,stim] = gen_contstim([64 64], [9 9], 4, 9, 3, [5 5], 3, contour_length); % contour stim (oris: 1, 2, 3)
-%[results.seed,stim]= gen_backstim([64 64], [9 9], 4, 9, 3, [6 5], 1, contour_length); % background suppression (pos/ori) [6 5] 1 [6 6] 2 [5 6] 3
-%[results.seed,stim] = gen_jitterstim([64 64], [9 9], 4, 9, 3, [5 5], 1, 7); % jitter stim
-%[results.seed,stim] = gen_figstim([64 64], [9 9], 4, 9, 3, [5 5], 5); % square figure stim
-
-%not used currently
-%[results.seed,stim] = gen_multcontstim([64 64], [9 9], 4, 9, 3, [4 5; 6 5], [1 1], [contour_length contour_length]); % contour stim
-%[results.seed,stim] = gen_contstim([64 64], [11 11], 4, 9, 3, [6 6], 1, contour_length); % contour stim (modified grid)
 
 Eh(squeeze(stim(1,:,:))>0) = 1;
 E45(squeeze(stim(2,:,:))>0) = 1;
 Ev(squeeze(stim(3,:,:))>0) = 1;
 E135(squeeze(stim(4,:,:))>0) = 1;
 
-% % test square
-%Eh([32-16 32+16], (32-16):(32+16)) = 1; % edge length = 16
-%Ev((32-16):(32+16), [32-16 32+16]) = 1;
 
-% %Add Attention
+% Add Attention
 if att
     % Attention parameters
-    %Xatt = 32; Yatt = 32; % Yatt = 40; %Center of attention
-    %Xatt = 24; Yatt = 32; % Front
-    Xatt = 40; Yatt = 32; % Back
+    Xatt = 32; Yatt = 32; %Center of attention (square and contour stimuli)
+    
+    %Xatt = 24; Yatt = 32; % Front in figure overlap
+    %Xatt = 40; Yatt = 32; % Back in figure overlap
+    
     sdatt = 8; %SD of attention
-    w_att = 0.07; %0.007; %Weight of attention
+    w_att = 0.07; %Weight of attention
 
     if strcmp(condition,'figure') % add to figure grouping cells
         input(5).name = 'INtoG'; % BOS network
@@ -190,9 +162,6 @@ else
     results.E_trace = [zeros(40,1); Y(:,10208)]; % save activity traces (centered)
 end
 
-%results.E_trace1 = [zeros(40,1); Y(:,10201)]; % competition
-%results.E_trace2 = [zeros(40,1); Y(:,10215)]; % competition
-
 results.B_trace1 = [zeros(40,1); Y(:,23024)];
 results.B_trace2 = [zeros(40,1); Y(:,27120)];
 
@@ -205,22 +174,12 @@ end
 
 results.Gc_trace = [zeros(40,1); Y(:,30428)];
 
-toc     % stop the timer 
+% toc     % stop the timer 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-system('hostname') 
+% system('hostname') 
 
 % save the result to a mat file - using the real condor job id
 % save(['output/' condition '__length__' num2str(contour_length) '__ori__' num2str(contour_ori) '__pos__' num2str(contour_posy) '__flag__' num2str(flag) '__id__' num2str(condorJobId)], 'results');
-
-if strcmp(condition,'figure_nan')
-    % for Nan's experiments
-    a = num2str(nan_total(condorJobId+1,:));
-    a = regexprep(a,' +','');
-    save(['output/' a], 'results');
-else
-    % for all other experiments
-    save(['output/' num2str(condorJobId)], 'results');
-end
 
 end

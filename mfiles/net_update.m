@@ -55,33 +55,42 @@ function dy = net_update(t,Y,Pop,Conn,input,sparse_list,sparse_list_input,decay)
         
         inrate = Y(subfrom.inx);
         
-	%xLayer = floor(size(subcon.matrix)/2); % find pad size
-        %inrate_pad = padarray(inrate,[xLayer(1) xLayer(2)],'circular'); % pad for circular convolution
+        %% Note:
+        % For most of the simulations, we used circular convolution. However, for results on the overlapping square figures,
+        % we used zero-padded convolution. As a result, in order to reproduce our results, you must comment out the portions
+        % of the code for circular convolution when running simulations on the overlapping square figures.
+        %%
+        
+        % find pad size
+        xLayer = floor(size(subcon.matrix)/2); % comment out if not using circular convolution
+        % pad for circular convolution
+        inrate_pad = padarray(inrate,[xLayer(1) xLayer(2)],'circular'); % comment out if not using circular convolution
         
         if subcon.scale==1
-            W(subto.inx) = W(subto.inx) + conv2(inrate,subcon.weight*subcon.matrix,'same'); % original
-            %temp = conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % crop
-            %W(subto.inx) = W(subto.inx) + temp(xLayer(1)+1:end-xLayer(1), xLayer(2)+1:end-xLayer(2)); % crop
+%             W(subto.inx) = W(subto.inx) + conv2(inrate,subcon.weight*subcon.matrix,'same'); % uncomment if not using circular convolution
+            
+            temp = conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % comment out if not using circular convolution
+            W(subto.inx) = W(subto.inx) + temp(xLayer(1)+1:end-xLayer(1), xLayer(2)+1:end-xLayer(2)); % comment out if not using circular convolution
             
         elseif subcon.scale<1 %to population is coarser than from population (like B to G)
             scale = 1/subcon.scale;
-            temp = conv2(inrate,subcon.weight*subcon.matrix,'same'); % original
+%             temp = conv2(inrate,subcon.weight*subcon.matrix,'same'); % uncomment if not using circular convolution
             
-	    %temp = conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % crop
-            %temp = temp(xLayer(1)+1:end-xLayer(1), xLayer(2)+1:end-xLayer(2)); % crop
+            temp = conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % comment out if not using circular convolution
+            temp = temp(xLayer(1)+1:end-xLayer(1), xLayer(2)+1:end-xLayer(2)); % comment out if not using circular convolution
             
-	    temp = temp(scale:scale:end,scale:scale:end);
+            temp = temp(scale:scale:end,scale:scale:end);
             W(subto.inx) = W(subto.inx) + temp;
             
         elseif subcon.scale>1 %from population is coarser than to population (like G to B)
             scale = subcon.scale;
             inrate_pad = zeros(size(inrate)*scale);
             inrate_pad(scale:scale:end,scale:scale:end) = inrate;
-            W(subto.inx) = W(subto.inx) + conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % original
+%             W(subto.inx) = W(subto.inx) + conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % uncomment if not using circular convolution
             
-	    %inrate_pad = padarray(inrate_pad,[xLayer(1) xLayer(2)],'circular'); % crop
-            %temp = conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % crop
-            %W(subto.inx) = W(subto.inx) + temp(xLayer(1)+1:end-xLayer(1), xLayer(2)+1:end-xLayer(2)); % crop
+            inrate_pad = padarray(inrate_pad,[xLayer(1) xLayer(2)],'circular'); % comment out if not using circular convolution
+            temp = conv2(inrate_pad,subcon.weight*subcon.matrix,'same'); % comment out if not using circular convolution
+            W(subto.inx) = W(subto.inx) + temp(xLayer(1)+1:end-xLayer(1), xLayer(2)+1:end-xLayer(2)); % comment out if not using circular convolution
         end
         
     end
