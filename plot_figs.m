@@ -333,8 +333,8 @@ U = ((B_temp(:,:,1)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,8)))-(B_temp(:,:,5)+cos(
 V = ((B_temp(:,:,7)+cos(pi/4)*(B_temp(:,:,6)+B_temp(:,:,8)))-(B_temp(:,:,3)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,4))))./((B_temp(:,:,7)+cos(pi/4)*(B_temp(:,:,6)+B_temp(:,:,8)))+(B_temp(:,:,3)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,4))));
 
 %% added removal of nans
-U(isnan(U) | abs(U)>0.1) = 0;
-V(isnan(V) | abs(V)>0.1) = 0;
+U(isnan(U) | abs(U)==1) = 0;
+V(isnan(V) | abs(V)==1) = 0;
 
 U(abs(B_temp(:,:,1)-B_temp(:,:,5))<eps & abs(B_temp(:,:,2)-B_temp(:,:,6))<eps & abs(B_temp(:,:,3)-B_temp(:,:,7))<eps & abs(B_temp(:,:,4)-B_temp(:,:,8))<eps)=0;
 V(abs(B_temp(:,:,1)-B_temp(:,:,5))<eps & abs(B_temp(:,:,2)-B_temp(:,:,6))<eps & abs(B_temp(:,:,3)-B_temp(:,:,7))<eps & abs(B_temp(:,:,4)-B_temp(:,:,8))<eps)=0;
