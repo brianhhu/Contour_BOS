@@ -3,7 +3,7 @@ Project code associated with Hu_etal '17 paper on contour integration and border
 
 ### Introduction
 
-The program is written in MATLAB (Mathworks). The code is known to run on R2014a, but should also be compatible with other versions. The main program function is **demo.m**. Running this program will show how to simulate the model network's response to different input stimuli, corresponding to the contour integration experiments (Chen et al., 2014) and the border ownership experiments (Qiu et al., 2007). Please be patient as these simulations may take some time. Please also note that our final results are averages over multiple simulations, while the demo here just shows results from a single simulation. To reproduce a subset of the figures shown in the paper, run **plot_figs.m** which uses actual data from our simulations. For more details about the model and/or experiments, please see the following references:
+The program is written in MATLAB (Mathworks). The code is known to run on R2014a, but should also be compatible with other versions. The main program function is **demo.m**. Running this program will simulate the model network's response to different input stimuli, corresponding to the contour integration experiments (Chen et al., 2014) and the border ownership experiments (Qiu et al., 2007). Please be patient as these simulations may take some time. Please also note that our final results are averages over multiple simulations, while the demo here just shows results from a single simulation. To reproduce a subset of the figures shown in the paper using actual data from our simulations, run **plot_figs.m**. For more details about the model and/or experiments, please see the following references:
 
     @Article{Hu_etal17,
       Title                    = {A recurrent neural model of proto-object based contour integration and figure-ground segregation},
@@ -39,6 +39,6 @@ The program is written in MATLAB (Mathworks). The code is known to run on R2014a
 
 ### Miscellaneous
 
-The final simulation results used in the paper can be found in the **Results** directory. Our paper detailing the recurrent neural model can be found in the **resources** directory.
+The data from our final simulation results can be found in the **Results** directory. Our paper detailing the recurrent neural model can be found in the **resources** directory.
 
 If you have any questions, please feel free to contact me at bhu6 (AT) jhmi (DOT) edu.
