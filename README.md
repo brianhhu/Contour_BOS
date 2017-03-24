@@ -41,4 +41,4 @@ The program is written in MATLAB (Mathworks). The code is known to run on R2014a
 
 The data from our final simulation results can be found in the **Results** directory. Our paper detailing the recurrent neural model can be found in the **resources** directory.
 
-If you have any questions, please feel free to contact me at bhu6 (AT) jhmi (DOT) edu.
+Special thanks to Danny Jeck (@dannyjeck) for contributing portions of the code in his re-write of an earlier model that the current work was based upon. If you have any questions, please feel free to contact me at bhu6 (AT) jhmi (DOT) edu.
