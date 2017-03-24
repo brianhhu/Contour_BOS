@@ -40,6 +40,7 @@ function dy = net_update(t,Y,Pop,Conn,input,sparse_list,sparse_list_input,decay)
 % [T,Y] = ode45(odefun,[0 tmax],Y0);
 %
 % By Danny Jeck, November 2014
+% Brian Hu - Added circular convolution here
 
     
     W = zeros(size(Y));

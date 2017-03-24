@@ -1,5 +1,6 @@
 function input = add_mihalas_attention(input,Pop,w_att,Xatt,Yatt,sdatt,condition)
-
+% Adds the correct attentional input to the model, either to the object grouping cells
+% or the contour grouping cells, depending on the input condition ('figure' or 'contour')
 
 if nargin<4
     Xatt = 24;

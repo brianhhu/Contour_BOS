@@ -1,6 +1,6 @@
 function WIBtoB = IBtoBfunc(x,y,odiff,ori,sd)
-% WIEtoB = IEtoBfunc(x,y,odiff,ori,sd)
-% Generates the normalized weight matrices for IE to B connections in the Mihalas (2011)
+% WIBtoB = IBtoBfunc(x,y,odiff,ori,sd)
+% Generates the normalized weight matrices for IB to B connections in the Mihalas (2011)
 % network.
 % 
 % x and y - outputs of the meshgrid function definint the size and scale of the 

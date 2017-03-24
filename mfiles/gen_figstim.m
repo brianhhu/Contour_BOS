@@ -1,5 +1,6 @@
 function [seed, stim] = gen_figstim( Ni, Ng, num_ori, num_pos, b_len, f_cen, f_len, clutter, saved_seed )
 
+% Creates figure in noise for border ownership experiments
 % Code written by Brian Hu, 2014
 
 %% Input

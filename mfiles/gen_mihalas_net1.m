@@ -1,7 +1,7 @@
 function [Pop, Conn] = gen_mihalas_net1(M,N,Nori,r_list)
 % [Pop, Conn] = gen_mihalas_net1(M,N,Nori,r_list)
 % Generates the Population (Pop) and Connection (Conn) structures for a
-% network according to Mihalas (2011). This network is used to simulate
+% network, similar to Mihalas (2011). This network is used to simulate
 % border ownership and grouping cell firing rates when given simplified
 % inputs. External inputs to the E cells (Pop(1)) are -1 or 1, 1 indicating
 % an edge of an appropriate orientation. External inputs to G cells
@@ -25,6 +25,7 @@ function [Pop, Conn] = gen_mihalas_net1(M,N,Nori,r_list)
 % doi:10.1073/pnas.1014655108
 % 
 % By Danny Jeck, November 2014
+% Modified by Brian Hu
 
 Nr = length(r_list);
 ori_list = 0:pi/Nori:pi-pi/Nori; %orientations for E cells

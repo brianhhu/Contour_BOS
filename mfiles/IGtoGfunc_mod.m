@@ -9,6 +9,7 @@ function WIGtoG = IGtoGfunc_mod(ori,r,sd_r,sd_t)
 % sd_t    - Gaussian width of connections in the tangential direction (default 0.5) 
 %
 % By Danny Jeck, November 2014
+% Modified by Brian Hu
 
 if nargin<3
     sd_t = 0.5;

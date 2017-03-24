@@ -26,6 +26,7 @@ function [T, Y, Pop, Conn] = run_network_parallel(Pop,Conn,input,E,tmax,decay)
 % Conn - unchanged connection structure
 %
 % By Danny Jeck, November 2014
+% Modified by Brian Hu
 
 
 % Initialize all E cell inputs to -1

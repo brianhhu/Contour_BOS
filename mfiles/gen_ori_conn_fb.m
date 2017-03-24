@@ -1,5 +1,5 @@
 function conn = gen_ori_conn_fb(from_pop,to_pop,func,x,y,sd)
-% conn = gen_ori_conn(from_pop,to_pop,func,x,y)
+% conn = gen_ori_conn_fb(from_pop,to_pop,func,x,y)
 % Creates a connection structure between two orientation populations. 
 % Connection runs from from_pop to to_pop and is defined in terms of the
 % output of the function handle func. x and y are outputs of the meshgrid
@@ -15,6 +15,7 @@ function conn = gen_ori_conn_fb(from_pop,to_pop,func,x,y,sd)
 % from_pop and to_pop.
 %
 % By Danny Jeck November 2014
+% Created by Brian Hu for contour grouping cell to V1 edge cell feedback
 
 if ~strcmp(from_pop.subpops(1).type,'orientation') || ~strcmp(to_pop.subpops(1).type,'orientation')
     error('two orientation populations required for gen_ori_conn');

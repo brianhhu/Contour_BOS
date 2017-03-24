@@ -1,5 +1,6 @@
 function [seed, stim] = gen_jitterstim( Ni, Ng, num_ori, num_pos, b_len, c_cen, c_ori, c_len, saved_seed )
 
+% Creates jitter stimulus for contour integration experiments
 % Code written by Brian Hu, 2014
 
 %% Input

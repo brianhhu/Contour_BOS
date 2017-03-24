@@ -1,6 +1,6 @@
 function WGtoIG = GtoIGfunc_mod(ori,r,sd_r,sd_t)
-% WGtoIB = GtoIBfunc(ori,r,sd_r,sd_t)
-% Generates the normalized weight matrices for G to IB connections in the Mihalas (2011)
+% WGtoIG = GtoIGfunc(ori,r,sd_r,sd_t)
+% Generates the normalized weight matrices for G to IG connections in the Mihalas (2011)
 % network. 
 % 
 % ori     - angle of the  orientation subpopulation
@@ -9,6 +9,7 @@ function WGtoIG = GtoIGfunc_mod(ori,r,sd_r,sd_t)
 % sd_t    - Gaussian width of connections in the tangential direction (default 0.5) 
 %
 % By Danny Jeck, November 2014
+% Modified by Brian Hu
 
 if nargin<3
     sd_t = 0.5;

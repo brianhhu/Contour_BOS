@@ -1,14 +1,17 @@
 function WBtoGc = BtoGcfunc(x,y,odiff,ori,r,sd_r,sd_t)
 % WBtoGc = BtoGcfunc(x,y,odiff,ori,r,sd_r,sd_t)
-% Generates the normalized weight matrices for B to G connections in the Mihalas (2011)
-% network. 
+% Generates the normalized weight matrices for B to Gc connections.
 % 
+% x       - grid of x-values
+% y       - grid of y-values
+% odiff   - orientation difference
 % ori     - angle of the  orientation subpopulation
 % r       - radius of the size population
 % sd_r    - Gaussian width of connections in the radial direction (default 0.25)
 % sd_t    - Gaussian width of connections in the tangential direction (default 0.5) 
 %
 % By Danny Jeck, November 2014
+% Created by Brian Hu to account for contour grouping cells
 
 if nargin<5
     r = 4;

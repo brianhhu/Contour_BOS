@@ -1,6 +1,6 @@
 function WBtoIB = BtoIBfunc(x,y,odiff,ori,sd)
-% WBtoIE = BtoIEfunc(x,y,odiff,ori,sd)
-% Generates the normalized weight matrices for B to IE connections in the Mihalas (2011)
+% WBtoIB = BtoIBfunc(x,y,odiff,ori,sd)
+% Generates the normalized weight matrices for B to IB connections in the Mihalas (2011)
 % network. 
 % 
 % x and y - outputs of the meshgrid function definint the size and scale of the 
@@ -11,6 +11,7 @@ function WBtoIB = BtoIBfunc(x,y,odiff,ori,sd)
 %           (default 2 according to Mihalas 2011).
 %
 % By Danny Jeck, November 2014
+% Modified by Brian Hu
 
 if nargin<5
     sd = 2;

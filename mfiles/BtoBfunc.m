@@ -1,8 +1,7 @@
 function WBtoB = BtoBfunc(x,y,odiff,ori,sd,c)
-% WBtoB = BtoBfunc(x,y,odiff,ori,sd)
+% WBtoB = BtoBfunc(x,y,odiff,ori,sd,c)
 % Generates the normalized weight matrices for B to B connections in the Mihalas (2011)
-% network. A significant modification is that c for the orthogonal connections (equation [S8])
-% is set to 0. 
+% network.
 % 
 % x and y - outputs of the meshgrid function definint the size and scale of the 
 %           connection templates. 
@@ -10,8 +9,10 @@ function WBtoB = BtoBfunc(x,y,odiff,ori,sd,c)
 % ori     - orientation of the input subpopulation
 % sd      - standard deviation of the extent of lateral connections
 %           (default 2 according to Mihalas 2011).
+% c       - weight of corner connection cells
 %
 % By Danny Jeck, November 2014
+% Modified by Brian Hu
 
 
 if nargin<5

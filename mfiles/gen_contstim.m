@@ -1,5 +1,6 @@
 function [seed, stim] = gen_contstim( Ni, Ng, num_ori, num_pos, b_len, c_cen, c_ori, c_len, pos_x, pos_y, flag, saved_seed )
 
+% Creates contour stimulus for contour integration experiments
 % Code written by Brian Hu, 2014
 
 %% Input
