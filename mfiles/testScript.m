@@ -1,4 +1,14 @@
 function [results] = testScript(condorJobId, condition, contour_ori, contour_length, contour_posx, contour_posy, flag, nofb, att)
+% Inputs:
+% condorJobId: used to run the simulations on a HTCondor cluster
+% condition: "contour", "background", "jitter", or "figure" corresponding to the experiments
+% contour_ori: orientation of the contour (1-4, 1: horizontal, 3: vertical)
+% contour_length: length of the contour (1-7, in increments of 2)
+% contour_posx: shift in x-position of the contour in pixels
+% contour_posy: shift in y-position of the contour in pixels
+% nofb: flag for determining if feedback is used (0: feedback present, 1: feedback removed)
+% att: flag for determining if attention is applied (0: no attention, 1: attention applied)
+%
 % Useful abbreviations:
 % pop - population
 % conn - connection
