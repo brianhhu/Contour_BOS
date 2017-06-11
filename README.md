@@ -1,6 +1,10 @@
 # Contour_BOS
 Project code associated with Hu_etal '17 paper on contour integration and border ownership assignment
 
+<p align="center">
+  <img src="http://brianhhu.github.io/img/Fig_Contour.png" alt="Sample head movements"/>
+</p>
+
 ### Introduction
 
 The program is written in MATLAB (Mathworks). The code is known to run on R2014a, but should also be compatible with other versions. The main program function is **demo.m**. Running this program will simulate the model network's response to different input stimuli, corresponding to the contour integration experiments (Chen et al., 2014) and the border ownership experiments (Qiu et al., 2007). Please be patient as these simulations may take some time. Please also note that our final results are based on averages over multiple simulations, while the demo here just shows results from a single simulation. To reproduce a subset of the figures shown in the paper using the actual data from our simulations, run **plot_figs.m**. For more details about the model and/or experiments, please see the following references:
