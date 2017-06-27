@@ -1,5 +1,5 @@
 %{
-Basic demo of a recurrent neural network that performs contour integration and border ownership
+Basic demo of a recurrent neural network that performs contour integration and border-ownership
 assignment. Simply run demo.m to start. This code was inspired by the code for the paper "Mechanisms
 of perceptual organization provide auto-zoom and auto-localization for attention to objects," which
 was written by Stefan Mihalas (Johns Hopkins University, 2011). Parts of this code are also borrowed
@@ -33,19 +33,19 @@ ha = tight_subplot(3,3,[.01 .01],[.01 .075],[.075 .01]);
 fontsize = 20;
 
 % Show the input stimulus
-axes(ha(1)); imagesc((max(cont_1.E,[],3)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(4)); imagesc((max(cont_7.E,[],3)>0)-1/64); axis square; caxis([0 2]);
-axes(ha(7)); imagesc((max(cont_jit.E,[],3)>0)-1/64); axis square; caxis([0 2]);
+axes(ha(1)); imagesc((max(cont_1.E(1:63,1:63,:),[],3)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(4)); imagesc((max(cont_7.E(1:63,1:63,:),[],3)>0)-1/64); axis square; caxis([0 2]);
+axes(ha(7)); imagesc((max(cont_jit.E(1:63,1:63,:),[],3)>0)-1/64); axis square; caxis([0 2]);
 
 % Show V1 activity
-axes(ha(2)); imagesc(max(cont_1.E,[],3)/max(cont_7.E(:))+1); title('V1 Activity','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(5)); imagesc(max(cont_7.E,[],3)/max(cont_7.E(:))+1); axis square; caxis([0 2]);
-axes(ha(8)); imagesc(max(cont_jit.E,[],3)/max(cont_7.E(:))+1); axis square; caxis([0 2]);
+axes(ha(2)); imagesc(max(cont_1.E(1:63,1:63,:),[],3)/max(cont_7.E(:))+1); title('V1 Activity','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(5)); imagesc(max(cont_7.E(1:63,1:63,:),[],3)/max(cont_7.E(:))+1); axis square; caxis([0 2]);
+axes(ha(8)); imagesc(max(cont_jit.E(1:63,1:63,:),[],3)/max(cont_7.E(:))+1); axis square; caxis([0 2]);
 
 % Show V4 contour grouping cell activity
-axes(ha(3)); imagesc(max(cont_1.Gc,[],3)/max(cont_7.Gc(:))+1); title('V4 Activity','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(6)); imagesc(max(cont_7.Gc,[],3)/max(cont_7.Gc(:))+1); axis square; caxis([0 2]);
-axes(ha(9)); imagesc(max(cont_jit.Gc,[],3)/max(cont_7.Gc(:))+1); axis square; caxis([0 2]);
+axes(ha(3)); imagesc(max(cont_1.Gc(1:7,1:7,:),[],3)/max(cont_7.Gc(:))+1); title('V4 Activity','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(6)); imagesc(max(cont_7.Gc(1:7,1:7,:),[],3)/max(cont_7.Gc(:))+1); axis square; caxis([0 2]);
+axes(ha(9)); imagesc(max(cont_jit.Gc(1:7,1:7,:),[],3)/max(cont_7.Gc(:))+1); axis square; caxis([0 2]);
 
 set(ha(1:9),'XTickLabel','')
 set(ha(1:9),'YTickLabel','')
@@ -102,16 +102,16 @@ N = M;
 scale_factor = 15;
 
 % Show the input stimulus
-axes(ha(1)); imagesc((max(square.E,[],3)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; ylabel('Square','FontSize',fontsize); caxis([0 2]);
-axes(ha(7)); imagesc((max(noisy_square_att.E,[],3)>0)-1/64); axis square; ylabel('Contour','FontSize',fontsize); caxis([0 2]);
+axes(ha(1)); imagesc((max(square.E(1:63,1:63,:),[],3)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; ylabel('Square','FontSize',fontsize); caxis([0 2]);
+axes(ha(7)); imagesc((max(noisy_square_att.E(1:63,1:63,:),[],3)>0)-1/64); axis square; ylabel('Noise','FontSize',fontsize); caxis([0 2]);
 
 % Show V1 edge activity
 axes(ha(2)); 
 E = max(square.E,[],3)./max(square.E(:))+1;
-imagesc(E); title('E','FontSize',fontsize); axis square; caxis([0 2]);
+imagesc(E(1:63,1:63)); title('E','FontSize',fontsize); axis square; caxis([0 2]);
 axes(ha(8));
 E = max(noisy_square_att.E,[],3)./max(noisy_square_att.E(:))+1;
-imagesc(E); axis square; caxis([0 2]);
+imagesc(E(1:63,1:63)); axis square; caxis([0 2]);
 
 % Show V2 BOS activity
 %% Square
@@ -123,14 +123,19 @@ square.B(square.B<0.15)=0;
 U = ((square.B(:,:,1)+cos(pi/4)*(square.B(:,:,2)+square.B(:,:,8)))-(square.B(:,:,5)+cos(pi/4)*(square.B(:,:,4)+square.B(:,:,6))))./((square.B(:,:,1)+cos(pi/4)*(square.B(:,:,2)+square.B(:,:,8)))+(square.B(:,:,5)+cos(pi/4)*(square.B(:,:,4)+square.B(:,:,6))));
 V = ((square.B(:,:,7)+cos(pi/4)*(square.B(:,:,6)+square.B(:,:,8)))-(square.B(:,:,3)+cos(pi/4)*(square.B(:,:,2)+square.B(:,:,4))))./((square.B(:,:,7)+cos(pi/4)*(square.B(:,:,6)+square.B(:,:,8)))+(square.B(:,:,3)+cos(pi/4)*(square.B(:,:,2)+square.B(:,:,4))));
 
+U = U(1:31,1:31);
+V = V(1:31,1:31);
+plotX=plotX(1:31,1:31);
+plotY=plotY(1:31,1:31);
+
 % added removal of nans
 U(isnan(U)) = 0;
 V(isnan(V)) = 0;
 
 idx = (abs(U) > 0.004) | (abs(V) > 0.004);
 q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
-set(q1,'LineWidth',0.1)
-axis square;set(gca,'Ydir','reverse');title('$$\vec{v}$$','Interpreter','Latex','FontSize',fontsize); xlim([1 32]); ylim([1 32])
+set(q1,'LineWidth',1.5)
+axis square;set(gca,'Ydir','reverse');title('$$\vec{\mathbf{v}}$$','Interpreter','Latex','FontSize',fontsize); xlim([1 31]); ylim([1 31])
 
 
 %% Noisy square with attention
@@ -143,25 +148,30 @@ B_temp(B_temp<0.15)=0;
 U = ((B_temp(:,:,1)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,8)))-(B_temp(:,:,5)+cos(pi/4)*(B_temp(:,:,4)+B_temp(:,:,6))))./((B_temp(:,:,1)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,8)))+(B_temp(:,:,5)+cos(pi/4)*(B_temp(:,:,4)+B_temp(:,:,6))));
 V = ((B_temp(:,:,7)+cos(pi/4)*(B_temp(:,:,6)+B_temp(:,:,8)))-(B_temp(:,:,3)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,4))))./((B_temp(:,:,7)+cos(pi/4)*(B_temp(:,:,6)+B_temp(:,:,8)))+(B_temp(:,:,3)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,4))));
 
+U = U(1:31,1:31);
+V = V(1:31,1:31);
+plotX=plotX(1:31,1:31);
+plotY=plotY(1:31,1:31);
+
 % added removal of nans
 U(isnan(U) | abs(U)==1) = 0; % remove spurious large BOS
 V(isnan(V) | abs(V)==1) = 0;
 % add some additional thresholding to remove noise from plot
-U(abs(B_temp(:,:,1)-B_temp(:,:,5))<eps & abs(B_temp(:,:,2)-B_temp(:,:,6))<eps & abs(B_temp(:,:,3)-B_temp(:,:,7))<eps & abs(B_temp(:,:,4)-B_temp(:,:,8))<eps)=0;
-V(abs(B_temp(:,:,1)-B_temp(:,:,5))<eps & abs(B_temp(:,:,2)-B_temp(:,:,6))<eps & abs(B_temp(:,:,3)-B_temp(:,:,7))<eps & abs(B_temp(:,:,4)-B_temp(:,:,8))<eps)=0;
+U(abs(B_temp(1:31,1:31,1)-B_temp(1:31,1:31,5))<eps & abs(B_temp(1:31,1:31,2)-B_temp(1:31,1:31,6))<eps & abs(B_temp(1:31,1:31,3)-B_temp(1:31,1:31,7))<eps & abs(B_temp(1:31,1:31,4)-B_temp(1:31,1:31,8))<eps)=0;
+V(abs(B_temp(1:31,1:31,1)-B_temp(1:31,1:31,5))<eps & abs(B_temp(1:31,1:31,2)-B_temp(1:31,1:31,6))<eps & abs(B_temp(1:31,1:31,3)-B_temp(1:31,1:31,7))<eps & abs(B_temp(1:31,1:31,4)-B_temp(1:31,1:31,8))<eps)=0;
 
 idx = (abs(U) > 0.004) | (abs(V) > 0.004);
 q2 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
-set(q2,'LineWidth',0.1)
-axis square;set(gca,'Ydir','reverse'); xlim([1 32]); ylim([1 32])
+set(q2,'LineWidth',1.5)
+axis square;set(gca,'Ydir','reverse'); xlim([1 31]); ylim([1 31])
 
 % Show object grouping cell activity
-axes(ha(4)); imagesc(square.G./max(square.G(:))+1); title('Go','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(10)); imagesc(noisy_square_att.G./max(noisy_square_att.G(:))+1); axis square; caxis([0 2]);
+axes(ha(4)); imagesc(square.G(1:7,1:7)./max(square.G(:))+1); title('Go','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(10)); imagesc(noisy_square_att.G(1:7,1:7)./max(noisy_square_att.G(:))+1); axis square; caxis([0 2]);
 
 % Show contour grouping cell activity
-axes(ha(5)); imagesc(max(square.Gc,[],3)./max(square.Gc(:))+1); title('Gc','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(11)); imagesc(max(noisy_square_att.Gc,[],3)./max(noisy_square_att.Gc(:))+1); axis square; caxis([0 2]);
+axes(ha(5)); imagesc(max(square.Gc(1:7,1:7,:),[],3)./max(square.Gc(:))+1); title('Gc','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(11)); imagesc(max(noisy_square_att.Gc(1:7,1:7,:),[],3)./max(noisy_square_att.Gc(:))+1); axis square; caxis([0 2]);
 
 %% remove tick marks
 set(ha(1),'XTick',[]);

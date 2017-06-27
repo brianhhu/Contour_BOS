@@ -23,23 +23,23 @@ cont_7 = load('contour_7.mat');
 cont_jit = load('contour_7_jitter.mat');
 [cj,ij] = sort(cont_jit.results_new.Gc_temp(:,4,4,3));
 
-axes(ha(1)); imagesc(squeeze(max(cont_1.results_new.E_temp(i1(2),:,:,:),[],4)>0)-1/64); title('1-bar','FontSize',fontsize); axis square; ylabel('Stimulus','FontSize',fontsize); caxis([0 2]);
-axes(ha(2)); imagesc(squeeze(max(cont_3.results_new.E_temp(i3(2),:,:,:),[],4)>0)-1/64); title('3-bar','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(3)); imagesc(squeeze(max(cont_5.results_new.E_temp(i5(1),:,:,:),[],4)>0)-1/64); title('5-bar','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(4)); imagesc(squeeze(max(cont_7.results_new.E_temp(i7(end),:,:,:),[],4)>0)-1/64); title('7-bar','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(5)); imagesc(squeeze(max(cont_jit.results_new.E_temp(ij(2),:,:,:),[],4)>0)-1/64); title('Jitter','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(1)); imagesc(squeeze(max(cont_1.results_new.E_temp(i1(2),1:63,1:63,:),[],4)>0)-1/64); title('1-bar','FontSize',fontsize); axis square; ylabel('Stimulus','FontSize',fontsize); caxis([0 2]);
+axes(ha(2)); imagesc(squeeze(max(cont_3.results_new.E_temp(i3(2),1:63,1:63,:),[],4)>0)-1/64); title('3-bar','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(3)); imagesc(squeeze(max(cont_5.results_new.E_temp(i5(1),1:63,1:63,:),[],4)>0)-1/64); title('5-bar','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(4)); imagesc(squeeze(max(cont_7.results_new.E_temp(i7(end),1:63,1:63,:),[],4)>0)-1/64); title('7-bar','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(5)); imagesc(squeeze(max(cont_jit.results_new.E_temp(ij(1),1:63,1:63,:),[],4)>0)-1/64); title('Jitter','FontSize',fontsize); axis square; caxis([0 2]);
 
-axes(ha(6)); imagesc(squeeze(max(cont_1.results_new.E_temp(i1(2),:,:,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); ylabel('V1','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(7)); imagesc(squeeze(max(cont_3.results_new.E_temp(i3(2),:,:,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(8)); imagesc(squeeze(max(cont_5.results_new.E_temp(i5(1),:,:,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(9)); imagesc(squeeze(max(cont_7.results_new.E_temp(i7(end),:,:,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(10)); imagesc(squeeze(max(cont_jit.results_new.E_temp(ij(2),:,:,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(6)); imagesc(squeeze(max(cont_1.results_new.E_temp(i1(2),1:63,1:63,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); ylabel('V1','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(7)); imagesc(squeeze(max(cont_3.results_new.E_temp(i3(2),1:63,1:63,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(8)); imagesc(squeeze(max(cont_5.results_new.E_temp(i5(1),1:63,1:63,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(9)); imagesc(squeeze(max(cont_7.results_new.E_temp(i7(end),1:63,1:63,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(10)); imagesc(squeeze(max(cont_jit.results_new.E_temp(ij(1),1:63,1:63,:),[],4))/max(max(cont_7.results_new.E_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
 
-axes(ha(11)); imagesc(squeeze(cont_1.results_new.Gc_temp(i1(2),:,:,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); ylabel('V4','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(12)); imagesc(squeeze(cont_3.results_new.Gc_temp(i3(2),:,:,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(13)); imagesc(squeeze(cont_5.results_new.Gc_temp(i5(1),:,:,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(14)); imagesc(squeeze(cont_7.results_new.Gc_temp(i7(end),:,:,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(15)); imagesc(squeeze(cont_jit.results_new.Gc_temp(ij(2),:,:,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(11)); imagesc(squeeze(cont_1.results_new.Gc_temp(i1(2),1:7,1:7,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); ylabel('V4','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(12)); imagesc(squeeze(cont_3.results_new.Gc_temp(i3(2),1:7,1:7,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(13)); imagesc(squeeze(cont_5.results_new.Gc_temp(i5(1),1:7,1:7,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(14)); imagesc(squeeze(cont_7.results_new.Gc_temp(i7(end),1:7,1:7,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(15)); imagesc(squeeze(cont_jit.results_new.Gc_temp(ij(1),1:7,1:7,3))/max(max(cont_7.results_new.Gc_temp(i7(end-1),:,:)))+1); axis square; caxis([0 2]);
 
 set(ha(1:15),'XTickLabel','')
 set(ha(1:15),'YTickLabel','')
@@ -62,23 +62,23 @@ back_7 = load('background_7.mat');
 back_jit = load('background_7_jitter.mat');
 [bj,jj] = sort(back_jit.results_new.Gc_temp(:,4,4,3));
 
-axes(ha(1)); imagesc(squeeze(max(back_1.results_new.E_temp(j1(10),:,:,:),[],4)>0)-1/64); title('1-bar','FontSize',fontsize); axis square; ylabel('Stimulus','FontSize',fontsize); caxis([0 2]);
-axes(ha(2)); imagesc(squeeze(max(back_3.results_new.E_temp(j3(5),:,:,:),[],4)>0)-1/64); title('3-bar','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(3)); imagesc(squeeze(max(back_5.results_new.E_temp(j5(1),:,:,:),[],4)>0)-1/64); title('5-bar','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(4)); imagesc(squeeze(max(back_7.results_new.E_temp(j7(end),:,:,:),[],4)>0)-1/64); title('7-bar','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(5)); imagesc(squeeze(max(back_jit.results_new.E_temp(jj(6),:,:,:),[],4)>0)-1/64); title('Jitter','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(1)); imagesc(squeeze(max(back_1.results_new.E_temp(j1(10),1:63,1:63,:),[],4)>0)-1/64); title('1-bar','FontSize',fontsize); axis square; ylabel('Stimulus','FontSize',fontsize); caxis([0 2]);
+axes(ha(2)); imagesc(squeeze(max(back_3.results_new.E_temp(j3(5),1:63,1:63,:),[],4)>0)-1/64); title('3-bar','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(3)); imagesc(squeeze(max(back_5.results_new.E_temp(j5(1),1:63,1:63,:),[],4)>0)-1/64); title('5-bar','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(4)); imagesc(squeeze(max(back_7.results_new.E_temp(j7(end),1:63,1:63,:),[],4)>0)-1/64); title('7-bar','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(5)); imagesc(squeeze(max(back_jit.results_new.E_temp(jj(6),1:63,1:63,:),[],4)>0)-1/64); title('Jitter','FontSize',fontsize); axis square; caxis([0 2]);
 
-axes(ha(6)); imagesc(squeeze(max(back_1.results_new.E_temp(j1(10),:,:,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); ylabel('V1','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(7)); imagesc(squeeze(max(back_3.results_new.E_temp(j3(5),:,:,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(8)); imagesc(squeeze(max(back_5.results_new.E_temp(j5(1),:,:,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(9)); imagesc(squeeze(max(back_7.results_new.E_temp(j7(end),:,:,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(10)); imagesc(squeeze(max(back_jit.results_new.E_temp(jj(6),:,:,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(6)); imagesc(squeeze(max(back_1.results_new.E_temp(j1(10),1:63,1:63,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); ylabel('V1','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(7)); imagesc(squeeze(max(back_3.results_new.E_temp(j3(5),1:63,1:63,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(8)); imagesc(squeeze(max(back_5.results_new.E_temp(j5(1),1:63,1:63,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(9)); imagesc(squeeze(max(back_7.results_new.E_temp(j7(end),1:63,1:63,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(10)); imagesc(squeeze(max(back_jit.results_new.E_temp(jj(6),1:63,1:63,:),[],4))/max(max(back_7.results_new.E_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
 
-axes(ha(11)); imagesc(squeeze(back_1.results_new.Gc_temp(j1(10),:,:,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); ylabel('V4','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(12)); imagesc(squeeze(back_3.results_new.Gc_temp(j3(5),:,:,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(13)); imagesc(squeeze(back_5.results_new.Gc_temp(j5(1),:,:,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(14)); imagesc(squeeze(back_7.results_new.Gc_temp(j7(end),:,:,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
-axes(ha(15)); imagesc(squeeze(back_jit.results_new.Gc_temp(jj(6),:,:,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(11)); imagesc(squeeze(back_1.results_new.Gc_temp(j1(10),1:7,1:7,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); ylabel('V4','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(12)); imagesc(squeeze(back_3.results_new.Gc_temp(j3(5),1:7,1:7,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(13)); imagesc(squeeze(back_5.results_new.Gc_temp(j5(1),1:7,1:7,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(14)); imagesc(squeeze(back_7.results_new.Gc_temp(j7(end),1:7,1:7,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
+axes(ha(15)); imagesc(squeeze(back_jit.results_new.Gc_temp(jj(6),1:7,1:7,3))/max(max(back_7.results_new.Gc_temp(j7(end),:,:)))+1); axis square; caxis([0 2]);
 
 set(ha(1:15),'XTickLabel','')
 set(ha(1:15),'YTickLabel','')
@@ -179,6 +179,7 @@ hold on
 plot(x(1),V1_b(1),'-g.','MarkerSize',25)
 
 plot(x(5),V1_c(5),'r.',x(5),V1_b(5),'-g.',x(5),V4(5),'-b.','MarkerSize',25)
+
 set(gca, 'Xtick', 1:2:9)
 set(gca, 'XtickLabel',{'1','3','5','7','Jitter'})
 xlim([0.5 9.5])
@@ -189,6 +190,11 @@ xlabel('Collinear bars','FontSize',fontsize)
 leg = legend('V1-C','V1-B','V4');
 set(leg,'FontSize',fontsize_axes);
 legend boxoff
+
+% plot dashed zero line
+l = plot([-1 10],[0 0], '--k');
+uistack(l,'bottom')
+
 tightfig;
 set(gcf, 'Color', 'w');
 
@@ -286,12 +292,12 @@ scale_factor = 15;
 
 idx_noisy = i(end);
 
-axes(ha(1)); imagesc(squeeze(max(square.results_new.E_temp,[],4)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; ylabel('Square','FontSize',fontsize); caxis([0 2]);
-axes(ha(7)); imagesc(squeeze(max(noisy_square.results_new.E_temp(idx_noisy,:,:,:),[],4)>0)-1/64); axis square; ylabel('Contour','FontSize',fontsize); caxis([0 2]);
+axes(ha(1)); imagesc(squeeze(max(square.results_new.E_temp(:,1:63,1:63,:),[],4)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; ylabel('Square','FontSize',fontsize); caxis([0 2]);
+axes(ha(7)); imagesc(squeeze(max(noisy_square.results_new.E_temp(idx_noisy,1:63,1:63,:),[],4)>0)-1/64); axis square; ylabel('Noise','FontSize',fontsize); caxis([0 2]);
 
 axes(ha(2)); 
 E = squeeze(max(square.results_new.E_temp,[],4)./max(max(max(square.results_new.E_temp,[],4)))+1);
-imagesc(E); title('E','FontSize',fontsize); axis square; caxis([0 2]);
+imagesc(E(1:63,1:63)); title('E','FontSize',fontsize); axis square; caxis([0 2]);
 axes(ha(3));
 
 %% added to threshold activity for B cells
@@ -303,6 +309,11 @@ square.results_new.B_temp(square.results_new.B_temp<0.15)=0;
 U = ((square.results_new.B_temp(:,:,1)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,8)))-(square.results_new.B_temp(:,:,5)+cos(pi/4)*(square.results_new.B_temp(:,:,4)+square.results_new.B_temp(:,:,6))))./((square.results_new.B_temp(:,:,1)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,8)))+(square.results_new.B_temp(:,:,5)+cos(pi/4)*(square.results_new.B_temp(:,:,4)+square.results_new.B_temp(:,:,6))));
 V = ((square.results_new.B_temp(:,:,7)+cos(pi/4)*(square.results_new.B_temp(:,:,6)+square.results_new.B_temp(:,:,8)))-(square.results_new.B_temp(:,:,3)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,4))))./((square.results_new.B_temp(:,:,7)+cos(pi/4)*(square.results_new.B_temp(:,:,6)+square.results_new.B_temp(:,:,8)))+(square.results_new.B_temp(:,:,3)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,4))));
 
+U = U(1:31,1:31);
+V = V(1:31,1:31);
+plotX = plotX(1:31,1:31);
+plotY = plotY(1:31,1:31);
+
 %% added removal of nans
 U(isnan(U)) = 0;
 V(isnan(V)) = 0;
@@ -310,16 +321,16 @@ V(isnan(V)) = 0;
 idx = (abs(U) > 0.004) | (abs(V) > 0.004);
 
 q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
-set(q1,'LineWidth',0.1)
-axis square;set(gca,'Ydir','reverse');title('$$\vec{v}$$','Interpreter','Latex','FontSize',fontsize); xlim([1 32]); ylim([1 32])
+set(q1,'LineWidth',1.5)
+axis square;set(gca,'Ydir','reverse');title('$$\vec{\mathbf{v}}$$','Interpreter','Latex','FontSize',fontsize); xlim([1 31]); ylim([1 31])
 
-axes(ha(4)); imagesc(squeeze(square.results_new.G_temp)./max(max(squeeze(square.results_new.G_temp)))+1); title('Go','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(5)); imagesc(squeeze(max(square.results_new.Gc_temp,[],4))./max(max(max(square.results_new.Gc_temp,[],4)))+1); title('Gc','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(4)); imagesc(squeeze(square.results_new.G_temp(:,1:7,1:7))./max(max(squeeze(square.results_new.G_temp)))+1); title('Go','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(5)); imagesc(squeeze(max(square.results_new.Gc_temp(:,1:7,1:7,:),[],4))./max(max(max(square.results_new.Gc_temp,[],4)))+1); title('Gc','FontSize',fontsize); axis square; caxis([0 2]);
 
 axes(ha(8));
 
 E = squeeze(max(noisy_square.results_new.E_temp(idx_noisy,:,:,:),[],4)./max(max(max(noisy_square.results_new.E_temp(idx_noisy,:,:,:),[],4)))+1);
-imagesc(E); axis square; caxis([0 2]);
+imagesc(E(1:63,1:63)); axis square; caxis([0 2]);
 axes(ha(9));
 scale_factor = 30; 
 
@@ -332,21 +343,24 @@ B_temp(B_temp<0.15)=0;
 U = ((B_temp(:,:,1)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,8)))-(B_temp(:,:,5)+cos(pi/4)*(B_temp(:,:,4)+B_temp(:,:,6))))./((B_temp(:,:,1)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,8)))+(B_temp(:,:,5)+cos(pi/4)*(B_temp(:,:,4)+B_temp(:,:,6))));
 V = ((B_temp(:,:,7)+cos(pi/4)*(B_temp(:,:,6)+B_temp(:,:,8)))-(B_temp(:,:,3)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,4))))./((B_temp(:,:,7)+cos(pi/4)*(B_temp(:,:,6)+B_temp(:,:,8)))+(B_temp(:,:,3)+cos(pi/4)*(B_temp(:,:,2)+B_temp(:,:,4))));
 
+U = U(1:31,1:31);
+V = V(1:31,1:31);
+
 %% added removal of nans
 U(isnan(U) | abs(U)==1) = 0;
 V(isnan(V) | abs(V)==1) = 0;
 
-U(abs(B_temp(:,:,1)-B_temp(:,:,5))<eps & abs(B_temp(:,:,2)-B_temp(:,:,6))<eps & abs(B_temp(:,:,3)-B_temp(:,:,7))<eps & abs(B_temp(:,:,4)-B_temp(:,:,8))<eps)=0;
-V(abs(B_temp(:,:,1)-B_temp(:,:,5))<eps & abs(B_temp(:,:,2)-B_temp(:,:,6))<eps & abs(B_temp(:,:,3)-B_temp(:,:,7))<eps & abs(B_temp(:,:,4)-B_temp(:,:,8))<eps)=0;
+U(abs(B_temp(1:31,1:31,1)-B_temp(1:31,1:31,5))<eps & abs(B_temp(1:31,1:31,2)-B_temp(1:31,1:31,6))<eps & abs(B_temp(1:31,1:31,3)-B_temp(1:31,1:31,7))<eps & abs(B_temp(1:31,1:31,4)-B_temp(1:31,1:31,8))<eps)=0;
+V(abs(B_temp(1:31,1:31,1)-B_temp(1:31,1:31,5))<eps & abs(B_temp(1:31,1:31,2)-B_temp(1:31,1:31,6))<eps & abs(B_temp(1:31,1:31,3)-B_temp(1:31,1:31,7))<eps & abs(B_temp(1:31,1:31,4)-B_temp(1:31,1:31,8))<eps)=0;
 
 idx = (abs(U) > 0.004) | (abs(V) > 0.004);
 
 q2 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
-set(q2,'LineWidth',0.1)
-axis square;set(gca,'Ydir','reverse'); xlim([1 32]); ylim([1 32])
+set(q2,'LineWidth',1.5)
+axis square;set(gca,'Ydir','reverse'); xlim([1 31]); ylim([1 31])
 
-axes(ha(10)); imagesc(squeeze(noisy_square.results_new.G_temp(idx_noisy,:,:))./max(max(squeeze(noisy_square.results_new.G_temp(idx_noisy,:,:))))+1); axis square; caxis([0 2]);
-axes(ha(11)); imagesc(squeeze(max(noisy_square.results_new.Gc_temp(idx_noisy,:,:,:),[],4))./max(max(max(noisy_square.results_new.Gc_temp(idx_noisy,:,:,:),[],4)))+1); axis square; caxis([0 2]);
+axes(ha(10)); imagesc(squeeze(noisy_square.results_new.G_temp(idx_noisy,1:7,1:7))./max(max(squeeze(noisy_square.results_new.G_temp(idx_noisy,:,:))))+1); axis square; caxis([0 2]);
+axes(ha(11)); imagesc(squeeze(max(noisy_square.results_new.Gc_temp(idx_noisy,1:7,1:7,:),[],4))./max(max(max(noisy_square.results_new.Gc_temp(idx_noisy,:,:,:),[],4)))+1); axis square; caxis([0 2]);
 
 %% remove tick marks
 set(ha(1),'XTick',[]);
@@ -387,147 +401,6 @@ set(ha(12), 'Position', [0 0 pos(3) pos(4)]);
 axis(ha(12), 'off')
 
 set(gcf,'Color','w');
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Fig 7) Plot overlapping figures
-fontsize = 20;
-square = load('figure_overlap.mat');
-square_front = load('figure_overlap_front.mat');
-square_back = load('figure_overlap_back.mat');
-
-figure
-cmap = [gray(64); jet(64)]; % new colormap
-colormap(cmap)
-ha = tight_subplot(3,6,[.01 .01],[.01 .05],[.05 .01]);
-
-M = 64;
-N = M;
-[plotX,plotY] = meshgrid(1:M/2,1:N/2);
-scale_factor = 10;
-
-axes(ha(1)); imagesc(squeeze(max(square.results_new.E_temp,[],4)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; caxis([0 2]);
-
-axes(ha(2)); 
-E = squeeze(max(square.results_new.E_temp,[],4)./max(max(max(square.results_new.E_temp,[],4)))+1);
-imagesc(E); title('E','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(3));
-
-%% added to threshold activity for B cells
-square.results_new.B_temp = squeeze(square.results_new.B_temp);
-
-% normalized
-U = ((square.results_new.B_temp(:,:,1)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,8)))-(square.results_new.B_temp(:,:,5)+cos(pi/4)*(square.results_new.B_temp(:,:,4)+square.results_new.B_temp(:,:,6))))./((square.results_new.B_temp(:,:,1)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,8)))+(square.results_new.B_temp(:,:,5)+cos(pi/4)*(square.results_new.B_temp(:,:,4)+square.results_new.B_temp(:,:,6))));
-V = ((square.results_new.B_temp(:,:,7)+cos(pi/4)*(square.results_new.B_temp(:,:,6)+square.results_new.B_temp(:,:,8)))-(square.results_new.B_temp(:,:,3)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,4))))./((square.results_new.B_temp(:,:,7)+cos(pi/4)*(square.results_new.B_temp(:,:,6)+square.results_new.B_temp(:,:,8)))+(square.results_new.B_temp(:,:,3)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,4))));
-
-%% added removal of nans
-U(isnan(U) | abs(U) > 0.5) = 0;
-V(isnan(V) | abs(V) > 0.5) = 0;
-
-U(abs(square.results_new.B_temp(:,:,1)-square.results_new.B_temp(:,:,5))<eps)=0;
-V(abs(square.results_new.B_temp(:,:,7)-square.results_new.B_temp(:,:,3))<eps)=0;
-
-idx = (abs(U) > 0) | (abs(V) > 0);
-
-q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
-set(q1,'LineWidth',0.1)
-axis square;set(gca,'Ydir','reverse');title('$$\vec{v}$$','Interpreter','Latex','FontSize',fontsize); xlim([1 32]); ylim([1 32])
-
-axes(ha(4)); imagesc(squeeze(square.results_new.G_temp)./max(max(squeeze(square.results_new.G_temp)))+1); title('Go','FontSize',fontsize); axis square; caxis([0 2]);
-axes(ha(5)); imagesc(squeeze(max(square.results_new.Gc_temp,[],4))./max(max(max(square.results_new.Gc_temp,[],4)))+1); title('Gc','FontSize',fontsize); axis square; caxis([0 2]);
-
-axes(ha(7)); imagesc(squeeze(max(square_front.results_new.E_temp,[],4)>0)-1/64); axis square; caxis([0 2]);
-hold on;
-plot(20,36,'y*','LineWidth',2);
-
-axes(ha(8)); 
-E = squeeze(max(square_front.results_new.E_temp,[],4)./max(max(max(square_front.results_new.E_temp,[],4)))+1);
-imagesc(E); axis square; caxis([0 2]);
-axes(ha(9));
-
-%% added to threshold activity for B cells
-square_front.results_new.B_temp = squeeze(square_front.results_new.B_temp);
-
-% normalized
-U = ((square_front.results_new.B_temp(:,:,1)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,8)))-(square_front.results_new.B_temp(:,:,5)+cos(pi/4)*(square_front.results_new.B_temp(:,:,4)+square_front.results_new.B_temp(:,:,6))))./((square_front.results_new.B_temp(:,:,1)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,8)))+(square_front.results_new.B_temp(:,:,5)+cos(pi/4)*(square_front.results_new.B_temp(:,:,4)+square_front.results_new.B_temp(:,:,6))));
-V = ((square_front.results_new.B_temp(:,:,7)+cos(pi/4)*(square_front.results_new.B_temp(:,:,6)+square_front.results_new.B_temp(:,:,8)))-(square_front.results_new.B_temp(:,:,3)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,4))))./((square_front.results_new.B_temp(:,:,7)+cos(pi/4)*(square_front.results_new.B_temp(:,:,6)+square_front.results_new.B_temp(:,:,8)))+(square_front.results_new.B_temp(:,:,3)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,4))));
-
-%% added removal of nans
-U(isnan(U) | abs(U) > 0.5) = 0;
-V(isnan(V) | abs(V) > 0.5) = 0;
-
-U(abs(square_front.results_new.B_temp(:,:,1)-square_front.results_new.B_temp(:,:,5))<eps)=0;
-V(abs(square_front.results_new.B_temp(:,:,7)-square_front.results_new.B_temp(:,:,3))<eps)=0;
-
-idx = (abs(U) > 0) | (abs(V) > 0);
-
-
-q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
-set(q1,'LineWidth',0.1)
-axis square;set(gca,'Ydir','reverse'); xlim([1 32]); ylim([1 32])
-
-axes(ha(10)); imagesc(squeeze(square_front.results_new.G_temp)./max(max(squeeze(square_front.results_new.G_temp)))+1); axis square; caxis([0 2]);
-axes(ha(11)); imagesc(squeeze(max(square_front.results_new.Gc_temp,[],4))./max(max(max(square_front.results_new.Gc_temp,[],4)))+1); axis square; caxis([0 2]);
-
-axes(ha(13)); imagesc(squeeze(max(square_back.results_new.E_temp,[],4)>0)-1/64); axis square; caxis([0 2]);
-hold on;
-plot(44,28,'y*','LineWidth',2);
-
-axes(ha(14)); 
-E = squeeze(max(square_back.results_new.E_temp,[],4)./max(max(max(square_back.results_new.E_temp,[],4)))+1);
-imagesc(E); axis square; caxis([0 2]);
-axes(ha(15));
-
-%% added to threshold activity for B cells
-square_back.results_new.B_temp = squeeze(square_back.results_new.B_temp);
-
-% normalized
-U = ((square_back.results_new.B_temp(:,:,1)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,8)))-(square_back.results_new.B_temp(:,:,5)+cos(pi/4)*(square_back.results_new.B_temp(:,:,4)+square_back.results_new.B_temp(:,:,6))))./((square_back.results_new.B_temp(:,:,1)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,8)))+(square_back.results_new.B_temp(:,:,5)+cos(pi/4)*(square_back.results_new.B_temp(:,:,4)+square_back.results_new.B_temp(:,:,6))));
-V = ((square_back.results_new.B_temp(:,:,7)+cos(pi/4)*(square_back.results_new.B_temp(:,:,6)+square_back.results_new.B_temp(:,:,8)))-(square_back.results_new.B_temp(:,:,3)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,4))))./((square_back.results_new.B_temp(:,:,7)+cos(pi/4)*(square_back.results_new.B_temp(:,:,6)+square_back.results_new.B_temp(:,:,8)))+(square_back.results_new.B_temp(:,:,3)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,4))));
-
-%% added removal of nans
-U(isnan(U) | abs(U) > 0.5) = 0;
-V(isnan(V) | abs(V) > 0.5) = 0;
-
-U(abs(square_back.results_new.B_temp(:,:,1)-square_back.results_new.B_temp(:,:,5))<eps)=0;
-V(abs(square_back.results_new.B_temp(:,:,7)-square_back.results_new.B_temp(:,:,3))<eps)=0;
-
-idx = (abs(U) > 0) | (abs(V) > 0);
-
-
-q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
-set(q1,'LineWidth',0.1)
-axis square;set(gca,'Ydir','reverse'); xlim([1 32]); ylim([1 32])
-
-axes(ha(16)); imagesc(squeeze(square_back.results_new.G_temp)./max(max(squeeze(square_back.results_new.G_temp)))+1); axis square; caxis([0 2]);
-axes(ha(17)); imagesc(squeeze(max(square_back.results_new.Gc_temp,[],4))./max(max(max(square_back.results_new.Gc_temp,[],4)))+1); axis square; caxis([0 2]);
-
-
-set(ha(1:18),'XTickLabel','')
-set(ha(1:18),'YTickLabel','')
-set(ha(1:18),'XTick',[])
-set(ha(1:18),'YTick',[])
-set(gcf, 'Color', 'w');
-
-%%% added to get colorbar
-h = colorbar;
-set(h,'YLim',[1.01 2])
-set(h,'YTick',linspace(1.01,2,6))
-set(h,'YTickLabel',{'0','0.2','0.4','0.6','0.8','1'})
-set(h, 'Position', [.875 .08 .02 .8150])
-
-%%%
-pos = get(ha(6),'Position');
-set(ha(6), 'Position', [0 0 pos(3) pos(4)]);
-axis(ha(6), 'off')
-
-pos = get(ha(12),'Position');
-set(ha(12), 'Position', [0 0 pos(3) pos(4)]);
-axis(ha(12), 'off')
-
-pos = get(ha(18),'Position');
-set(ha(18), 'Position', [0 0 pos(3) pos(4)]);
-axis(ha(18), 'off')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -733,3 +606,155 @@ xlabel('Distance (deg)','FontSize',fontsize)
 
 tightfig;
 set(gcf, 'Color', 'w');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Fig S3) Plot overlapping figures
+fontsize = 20;
+square = load('figure_overlap.mat');
+square_front = load('figure_overlap_front.mat');
+square_back = load('figure_overlap_back.mat');
+
+figure
+cmap = [gray(64); jet(64)]; % new colormap
+colormap(cmap)
+ha = tight_subplot(3,6,[.01 .01],[.01 .05],[.05 .01]);
+
+M = 64;
+N = M;
+[plotX,plotY] = meshgrid(1:M/2,1:N/2);
+scale_factor = 10;
+
+axes(ha(1)); imagesc(squeeze(max(square.results_new.E_temp(:,1:63,1:63,:),[],4)>0)-1/64); title('Stimulus','FontSize',fontsize); axis square; caxis([0 2]);
+
+axes(ha(2)); 
+E = squeeze(max(square.results_new.E_temp,[],4)./max(max(max(square.results_new.E_temp,[],4)))+1);
+imagesc(E(1:63,1:63)); title('E','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(3));
+
+%% added to threshold activity for B cells
+square.results_new.B_temp = squeeze(square.results_new.B_temp);
+
+% normalized
+U = ((square.results_new.B_temp(:,:,1)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,8)))-(square.results_new.B_temp(:,:,5)+cos(pi/4)*(square.results_new.B_temp(:,:,4)+square.results_new.B_temp(:,:,6))))./((square.results_new.B_temp(:,:,1)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,8)))+(square.results_new.B_temp(:,:,5)+cos(pi/4)*(square.results_new.B_temp(:,:,4)+square.results_new.B_temp(:,:,6))));
+V = ((square.results_new.B_temp(:,:,7)+cos(pi/4)*(square.results_new.B_temp(:,:,6)+square.results_new.B_temp(:,:,8)))-(square.results_new.B_temp(:,:,3)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,4))))./((square.results_new.B_temp(:,:,7)+cos(pi/4)*(square.results_new.B_temp(:,:,6)+square.results_new.B_temp(:,:,8)))+(square.results_new.B_temp(:,:,3)+cos(pi/4)*(square.results_new.B_temp(:,:,2)+square.results_new.B_temp(:,:,4))));
+
+U = U(1:31,1:31);
+V = V(1:31,1:31);
+plotX=plotX(1:31,1:31);
+plotY=plotY(1:31,1:31);
+
+%% added removal of nans
+U(isnan(U) | abs(U) > 0.5) = 0;
+V(isnan(V) | abs(V) > 0.5) = 0;
+
+U(abs(square.results_new.B_temp(1:31,1:31,1)-square.results_new.B_temp(1:31,1:31,5))<eps)=0;
+V(abs(square.results_new.B_temp(1:31,1:31,7)-square.results_new.B_temp(1:31,1:31,3))<eps)=0;
+
+idx = (abs(U) > 0) | (abs(V) > 0);
+
+q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
+set(q1,'LineWidth',1.5)
+axis square;set(gca,'Ydir','reverse');title('$$\vec{\mathbf{v}}$$','Interpreter','Latex','FontSize',fontsize); xlim([1 31]); ylim([1 31])
+
+axes(ha(4)); imagesc(squeeze(square.results_new.G_temp(:,1:7,1:7))./max(max(squeeze(square.results_new.G_temp)))+1); title('Go','FontSize',fontsize); axis square; caxis([0 2]);
+axes(ha(5)); imagesc(squeeze(max(square.results_new.Gc_temp(:,1:7,1:7,:),[],4))./max(max(max(square.results_new.Gc_temp,[],4)))+1); title('Gc','FontSize',fontsize); axis square; caxis([0 2]);
+
+axes(ha(7)); imagesc(squeeze(max(square_front.results_new.E_temp(:,1:63,1:63,:),[],4)>0)-1/64); axis square; caxis([0 2]);
+hold on;
+plot(20,36,'y*','LineWidth',2);
+
+axes(ha(8)); 
+E = squeeze(max(square_front.results_new.E_temp,[],4)./max(max(max(square_front.results_new.E_temp,[],4)))+1);
+imagesc(E(1:63,1:63)); axis square; caxis([0 2]);
+axes(ha(9));
+
+%% added to threshold activity for B cells
+square_front.results_new.B_temp = squeeze(square_front.results_new.B_temp);
+
+% normalized
+U = ((square_front.results_new.B_temp(:,:,1)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,8)))-(square_front.results_new.B_temp(:,:,5)+cos(pi/4)*(square_front.results_new.B_temp(:,:,4)+square_front.results_new.B_temp(:,:,6))))./((square_front.results_new.B_temp(:,:,1)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,8)))+(square_front.results_new.B_temp(:,:,5)+cos(pi/4)*(square_front.results_new.B_temp(:,:,4)+square_front.results_new.B_temp(:,:,6))));
+V = ((square_front.results_new.B_temp(:,:,7)+cos(pi/4)*(square_front.results_new.B_temp(:,:,6)+square_front.results_new.B_temp(:,:,8)))-(square_front.results_new.B_temp(:,:,3)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,4))))./((square_front.results_new.B_temp(:,:,7)+cos(pi/4)*(square_front.results_new.B_temp(:,:,6)+square_front.results_new.B_temp(:,:,8)))+(square_front.results_new.B_temp(:,:,3)+cos(pi/4)*(square_front.results_new.B_temp(:,:,2)+square_front.results_new.B_temp(:,:,4))));
+
+U = U(1:31,1:31);
+V = V(1:31,1:31);
+
+%% added removal of nans
+U(isnan(U) | abs(U) > 0.5) = 0;
+V(isnan(V) | abs(V) > 0.5) = 0;
+
+U(abs(square_front.results_new.B_temp(1:31,1:31,1)-square_front.results_new.B_temp(1:31,1:31,5))<eps)=0;
+V(abs(square_front.results_new.B_temp(1:31,1:31,7)-square_front.results_new.B_temp(1:31,1:31,3))<eps)=0;
+
+idx = (abs(U) > 0) | (abs(V) > 0);
+
+
+q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
+set(q1,'LineWidth',1.5)
+axis square;set(gca,'Ydir','reverse'); xlim([1 31]); ylim([1 31])
+
+axes(ha(10)); imagesc(squeeze(square_front.results_new.G_temp(:,1:7,1:7))./max(max(squeeze(square_front.results_new.G_temp)))+1); axis square; caxis([0 2]);
+axes(ha(11)); imagesc(squeeze(max(square_front.results_new.Gc_temp(:,1:7,1:7,:),[],4))./max(max(max(square_front.results_new.Gc_temp,[],4)))+1); axis square; caxis([0 2]);
+
+axes(ha(13)); imagesc(squeeze(max(square_back.results_new.E_temp(:,1:63,1:63,:),[],4)>0)-1/64); axis square; caxis([0 2]);
+hold on;
+plot(44,28,'y*','LineWidth',2);
+
+axes(ha(14)); 
+E = squeeze(max(square_back.results_new.E_temp,[],4)./max(max(max(square_back.results_new.E_temp,[],4)))+1);
+imagesc(E(1:63,1:63)); axis square; caxis([0 2]);
+axes(ha(15));
+
+%% added to threshold activity for B cells
+square_back.results_new.B_temp = squeeze(square_back.results_new.B_temp);
+
+% normalized
+U = ((square_back.results_new.B_temp(:,:,1)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,8)))-(square_back.results_new.B_temp(:,:,5)+cos(pi/4)*(square_back.results_new.B_temp(:,:,4)+square_back.results_new.B_temp(:,:,6))))./((square_back.results_new.B_temp(:,:,1)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,8)))+(square_back.results_new.B_temp(:,:,5)+cos(pi/4)*(square_back.results_new.B_temp(:,:,4)+square_back.results_new.B_temp(:,:,6))));
+V = ((square_back.results_new.B_temp(:,:,7)+cos(pi/4)*(square_back.results_new.B_temp(:,:,6)+square_back.results_new.B_temp(:,:,8)))-(square_back.results_new.B_temp(:,:,3)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,4))))./((square_back.results_new.B_temp(:,:,7)+cos(pi/4)*(square_back.results_new.B_temp(:,:,6)+square_back.results_new.B_temp(:,:,8)))+(square_back.results_new.B_temp(:,:,3)+cos(pi/4)*(square_back.results_new.B_temp(:,:,2)+square_back.results_new.B_temp(:,:,4))));
+
+U = U(1:31,1:31);
+V = V(1:31,1:31);
+
+%% added removal of nans
+U(isnan(U) | abs(U) > 0.5) = 0;
+V(isnan(V) | abs(V) > 0.5) = 0;
+
+U(abs(square_back.results_new.B_temp(1:31,1:31,1)-square_back.results_new.B_temp(1:31,1:31,5))<eps)=0;
+V(abs(square_back.results_new.B_temp(1:31,1:31,7)-square_back.results_new.B_temp(1:31,1:31,3))<eps)=0;
+
+idx = (abs(U) > 0) | (abs(V) > 0);
+
+
+q1 = quiver(plotX(idx),plotY(idx),U(idx)*scale_factor,V(idx)*scale_factor,0);
+set(q1,'LineWidth',0.1)
+axis square;set(gca,'Ydir','reverse'); xlim([1 32]); ylim([1 32])
+
+axes(ha(16)); imagesc(squeeze(square_back.results_new.G_temp(:,1:7,1:7))./max(max(squeeze(square_back.results_new.G_temp)))+1); axis square; caxis([0 2]);
+axes(ha(17)); imagesc(squeeze(max(square_back.results_new.Gc_temp(:,1:7,1:7,:),[],4))./max(max(max(square_back.results_new.Gc_temp,[],4)))+1); axis square; caxis([0 2]);
+
+
+set(ha(1:18),'XTickLabel','')
+set(ha(1:18),'YTickLabel','')
+set(ha(1:18),'XTick',[])
+set(ha(1:18),'YTick',[])
+set(gcf, 'Color', 'w');
+
+%%% added to get colorbar
+h = colorbar;
+set(h,'YLim',[1.01 2])
+set(h,'YTick',linspace(1.01,2,6))
+set(h,'YTickLabel',{'0','0.2','0.4','0.6','0.8','1'})
+set(h, 'Position', [.875 .08 .02 .8150])
+
+%%%
+pos = get(ha(6),'Position');
+set(ha(6), 'Position', [0 0 pos(3) pos(4)]);
+axis(ha(6), 'off')
+
+pos = get(ha(12),'Position');
+set(ha(12), 'Position', [0 0 pos(3) pos(4)]);
+axis(ha(12), 'off')
+
+pos = get(ha(18),'Position');
+set(ha(18), 'Position', [0 0 pos(3) pos(4)]);
+axis(ha(18), 'off')
