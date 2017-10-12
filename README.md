@@ -9,7 +9,7 @@ Project code associated with Hu_etal '17 paper on contour integration and border
 
 The program is written in MATLAB (Mathworks). The code is known to run on R2014a, but should also be compatible with other versions. The main program function is **demo.m**. Running this program will simulate the model network's response to different input stimuli, corresponding to the contour integration experiments (Chen et al., 2014) and the border-ownership experiments (Qiu et al., 2007). Please be patient as these simulations may take some time. Please also note that our final results are based on averages over multiple simulations, while the demo here just shows results from a single simulation. To reproduce a subset of the figures shown in the paper using the actual data from our simulations, run **plot_figs.m**. For more details about the model and/or experiments, please see the following references:
 
-    @Article{Hu_etal17,
+    @Article{Hu_Niebur17,
         Title                    = {A recurrent neural model of proto-object based contour integration and figure-ground segregation},
         Author                   = {Hu, Brian and Niebur, Ernst},
         Journal                  = {Journal of Computational Neuroscience},
