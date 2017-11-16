@@ -14,10 +14,10 @@ The program is written in MATLAB (Mathworks). The code is known to run on R2014a
         Author                   = {Hu, Brian and Niebur, Ernst},
         Journal                  = {Journal of Computational Neuroscience},
         Year                     = {2017},
-        Pages                    = {},
-        Volume                   = {},
-        Issn                     = {1573-6873}
-        Doi                      = {10.1007/s10827-017-0659-3}
+        Volume                   = {43},
+        Number                   = {3},
+        Pages                    = {227--242},
+        Doi                      = {10.1007/s10827-017-0659-3},
     }
 
     @Article{Chen_etal14,
@@ -44,6 +44,6 @@ The program is written in MATLAB (Mathworks). The code is known to run on R2014a
 
 ### Miscellaneous
 
-The data from our final simulation results can be found in the **Results** directory. Our paper detailing the recurrent neural model can be found in the **resources** directory (to be added).
+The data from our final simulation results can be found in the **Results** directory. Our paper detailing the recurrent neural model can be found in the **resources** directory.
 
 Special thanks to Danny Jeck (@dannyjeck) for contributing portions of the code in his re-write of an earlier model that the current work was based upon. If you have any questions, please feel free to contact me at bhu6 (AT) jhmi (DOT) edu.
